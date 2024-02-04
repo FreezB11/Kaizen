@@ -5,5 +5,12 @@
 int main (){
     printf("\a");
     printf("hello\n");
+    
+    int i = 0;
+    do {
+        printf("%d",i);
+        i++;
+    }while(i<5);
+
     return 0;
 }
