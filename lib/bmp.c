@@ -13,12 +13,14 @@ bmp bmp_write(char *filename,char data[],int width,int height){
 
         0x180001, 0, 0, 0x002e23, 0x002e23, 0, 0,
     };
+    int file_size = 54 + 4 * width * height;
 
+    header[0] = sizeof(tag) + sizeof(header) + file_size;
 
     FILE *file = fopen(filename,"w+");
 
     fwrite(&tag,sizeof(tag),1,file);
     fwrite(&header, sizeof(header), 1, file);
-    fwrite(&data,sizeof(data),1,file);
+    fwrite(&data,file_size*sizeof(char),1,file);
     fclose(file);
 }

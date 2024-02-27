@@ -17,7 +17,7 @@ int main (int argc,char* argv[]){
         0x00  // Padding
     };
 
-    bmp_write(input,bitmap,1,1);
+    bmp_write(input,bitmap,10,10);
 
     return 0;
 }
