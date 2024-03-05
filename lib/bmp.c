@@ -15,21 +15,15 @@ bmp bmp_write(char *filename,char data[],int width,int height){
     };
     int file_size = 54 + 4 * width * height;
 
-    // header[0] = sizeof(tag) + sizeof(header) + file_size;
+    header[0] = sizeof(tag) + sizeof(header) + file_size;
 
     FILE *file = fopen(filename,"w+");
 
     fwrite(&tag,sizeof(tag),1,file);
     fwrite(&header, sizeof(header), 1, file);
-    char bitmap[] = {
-        0x35, // Blue
-        0x41, // Green
-        0xef, // Red
-        0x00  // Padding
-    };
+    
     // fwrite(&bitmap, sizeof(bitmap), 1, file);
     printf("%s\n",data);
-    printf("%ld\n",sizeof(bitmap));
     printf("%ld\n",sizeof(file_size));
     fwrite(*(&data),file_size,1,file);
     fclose(file);

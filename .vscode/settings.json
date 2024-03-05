@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "bmp.h": "c",
+        "color.h": "c"
+    }
+}

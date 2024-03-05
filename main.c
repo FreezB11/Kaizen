@@ -4,6 +4,9 @@
 #include "lib/color.h"
 #include "lib/bmp.h"
 
+#define white 255,255,255
+
+
 
 int main (int argc,char* argv[]){
    
@@ -11,13 +14,22 @@ int main (int argc,char* argv[]){
     char *input = argv[1];
     
     char bitmap[] = {
-        0xa4, // Blue
-    0x55, // Green
-    0x00, // Red
-    0x00  // Padding
+    // 255,255,255, //white
+    white,
+    0,255,0, // green
+    0,0,255, //red
+    255,255,255,
+    255,0,0,// blue in coder term
+    255,255,0, //cyan
+    0,255,255, // yellow
+    255,255,255,
+    255,255,255, //white
+    0,255,0, // green
+    0,0,255, //red
+    255,255,255,
     };
 
-    bmp_write(input,bitmap,1,1);
+    bmp_write(input,bitmap,3,3); // width then height
 
     return 0;
 }
