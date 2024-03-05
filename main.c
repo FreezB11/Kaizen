@@ -19,7 +19,7 @@ int main (int argc,char* argv[]){
         0x44
     };
 
-    bmp_write(input,0,2,2);
+    bmp_write(input,0,10,10);
 
     return 0;
 }
