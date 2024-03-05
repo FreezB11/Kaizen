@@ -11,13 +11,15 @@ int main (int argc,char* argv[]){
     char *input = argv[1];
     
     char bitmap[] = {
-        0x35, // Blue
-        0x41, // Green
-        0xef, // Red
-        0x00  // Padding
+        0x36,
+        0x39,
+        0x3C,
+        0x3E,
+        0x41,
+        0x44
     };
 
-    bmp_write(input,bitmap,10,10);
+    bmp_write(input,0,2,2);
 
     return 0;
 }

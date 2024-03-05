@@ -7,7 +7,7 @@ bmp bmp_write(char *filename,char data[],int width,int height){
     char tag[] = {'B','M'};
 
      int header[] = {
-        0,                   // File size... update at the end.
+        454,                   // File size... update at the end.
         0, 0x36, 0x28,
         width, height,       // Image dimensions in pixels
 
@@ -15,7 +15,7 @@ bmp bmp_write(char *filename,char data[],int width,int height){
     };
     int file_size = 54 + 4 * width * height;
 
-    header[0] = sizeof(tag) + sizeof(header) + file_size;
+    // header[0] = sizeof(tag) + sizeof(header) + file_size;
 
     FILE *file = fopen(filename,"w+");
 
