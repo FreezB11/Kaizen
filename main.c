@@ -5,8 +5,10 @@
 #include "lib/bmp.h"
 
 #define white 255,255,255
+#define black 0,0,0
 
-
+#define height 3
+#define width 3
 
 int main (int argc,char* argv[]){
    
@@ -29,7 +31,9 @@ int main (int argc,char* argv[]){
     255,255,255,
     };
 
-    bmp_write(input,bitmap,3,3); // width then height
+    int img_data[height][width] = {};
+
+    bmp_write(input,bitmap,width,height); // width then height
 
     return 0;
 }
