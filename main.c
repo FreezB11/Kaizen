@@ -31,9 +31,11 @@ int main (int argc,char* argv[]){
     255,255,255,
     };
 
-    int img_data[height][width] = {};
+    char img_data[height][width] = {{black,white,black},{white,black,white},
+                                   {black,white,black},
+                                   {white,black,white}};
 
-    bmp_write(input,bitmap,width,height); // width then height
+    bmp_write(input,img_data,width,height); // width then height
 
     return 0;
 }
