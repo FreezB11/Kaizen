@@ -11,15 +11,16 @@ int main(){
     double eps = 1.61012e-4;
     double rate =1.6101e-4 ;
     double intg= 0;
-    printf("rate:%f\n",rate);
+    
     
     for (double i = 0; i < func(2);i = i+eps)
     {
-        intg = intg + i*eps;
-        printf("%f\n",intg);
+        intg += func(i)*eps;
+        printf("%f :%f\n",i,intg);
         //printf("%f\n",i);
     }
-    
+    printf("rate:%f\n",rate);
+    printf("eps:%f\n",eps);
     
 
     return 0;
