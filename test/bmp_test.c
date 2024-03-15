@@ -1,26 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-int main() {
-    int width = 1; 
-    int height = 1;
-    char tag[] = { 'B', 'M' };
-    int header[] = {
-        0x3a, 0x00, 0x36, 0x28, width, height, 0x180001, 
-        0, 0, 0x002e23, 0x002e23, 0, 0 
-    };
+#include <string.h>
+#include "lib/color.h"
+#include "lib/bmp.h"
 
-    // Store as char array, because we want each value to take up
-    // one byte.
+#define white 255,255,255
+#define black 0,0,0
+
+#define height 3
+#define width 3
+
+int main (int argc,char* argv[]){
+   
+
+    char *input = argv[1];
+    
     char bitmap[] = {
-        0x35, // Blue
-        0x41, // Green
-        0xef, // Red
-        0x00  // Padding
+    // 255,255,255, //white
+    white,
+    0,255,0, // green
+    0,0,255, //red
+    255,255,255,
+    255,0,0,// blue in coder term
+    255,255,0, //cyan
+    0,255,255, // yellow
+    255,255,255,
+    255,255,255, //white
+    0,255,0, // green
+    0,0,255, //red
+    255,255,255,
     };
 
-    FILE *fp = fopen("test.bmp", "w+");
-    fwrite(&tag, sizeof(tag), 1, fp);
-    fwrite(&header, sizeof(header), 1, fp); 
-    fwrite(&bitmap, sizeof(bitmap), 1, fp);
-    fclose(fp);
+    char img_data[height][width] = {{black,white,black},{white,black,white},
+                                   {black,white,black},
+                                   {white,black,white}};
+
+    bmp_write(input,img_data,width,height); // width then height
+
+    return 0;
 }
