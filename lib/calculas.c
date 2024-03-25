@@ -6,3 +6,21 @@ double df(double (*func)(double),double x){
     double df = (func(x+eps) -func(x-eps))/(2*eps);
     return df;
 }
+
+
+
+/*
+
+double func(double x){
+    return x*x;
+}
+
+int main(){
+
+    double dff = df(func,3);
+
+    printf("%f\n",dff);
+    return 0;
+}
+
+*/
