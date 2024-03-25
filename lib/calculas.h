@@ -2,7 +2,7 @@
 #define _CALC
 
 
-double df(double (*func)(double),double x);
+double df(double (*func)(int),double x);
 
 
 #endif

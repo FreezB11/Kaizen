@@ -14,9 +14,15 @@ int dataset[4][2] ={
 
 //y= m*x+b;
 
-int w = 0; // weight
-double cost =0;
+double w = 0; // weight
+double cost(int y1,int y2){
 
+    double cost = (y1-y2)*(y1-y2);
+
+    return cost;
+}
+
+double costt = 0;
 
 int main (){
 
@@ -25,11 +31,12 @@ int main (){
         int y_desired = dataset[i][1];
         int y = w*x;
 
-        cost += (y_desired-y)*(y_desired-y); 
+         costt += cost(y,y_desired);
 
         double dcost = df(cost,w);
+        w -= dcost;
 
-        printf("%d == %d, cost:: %lf\n",y_desired,y,cost);
+        printf("%d == %d, cost:: %lf\n",y_desired,y,costt);
 
     }
 
