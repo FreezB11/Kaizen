@@ -8,6 +8,6 @@
 #define nn float
 #define nn_initialize float
 
-void LinearREG(float *input,float *weight);
+void LinearREG(float input[],float *weight,int length);
 
 #endif
