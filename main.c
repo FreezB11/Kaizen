@@ -1,10 +1,10 @@
 #include <stdio.h>
+#include "lib/nn.h"
 
 int main(){
-    int test[8];
+    
+    float inputs[]={1,2,3,4,4};
 
-    for(int i=0;i<10;i++){
-        printf("%d\n",test[i]);
-    }
+    float out_tes = LinearREG(inputs);
     return 0;
 }
