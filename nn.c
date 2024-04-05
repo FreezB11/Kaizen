@@ -1,46 +1,70 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "lib/calculas.h"
+#include "lib/color.h"
 
-int dataset[4][2] ={
+#define RAND_MAX 2147483647
+// float eps = 1.61012e-4;
+
+#define train_count (sizeof(train)/sizeof(train[0]))
+
+int train[][2] ={
   //{x,y}
     {0,0},
     {1,2},
     {2,4},
-    {3,6}
+    {3,6},
+    {4,8}
 }; 
 
-// here y=2x
+// float layer1_weight[];
 
-//y= m*x+b;
+// float Z(float weight[],int data[]){
+//     int sum;
+//     for(size_t i=0;i<train_count;i++){
+//         sum += weight[i]*data[i];
+//     }
+//     return sum;
+// }
 
-double w = 0; // weight
-double cost(int y1,int y2){
+void test(void *test_inp){
 
-    double cost = (y1-y2)*(y1-y2);
-
-    return cost;
 }
 
-double costt = 0;
+float rand_float(void){
+    return (float)rand()/(float)RAND_MAX;
+}
 
-int main (){
-
-    for(int i =0;i<4;i++){
-        int x = dataset[i][0];
-        int y_desired = dataset[i][1];
-        int y = w*x;
-
-         costt += cost(y,y_desired);
-
-        double dcost = df(cost,w);
-        w -= dcost;
-
-        printf("%d == %d, cost:: %lf\n",y_desired,y,costt);
-
+float cost(float w){
+    float result = 0.0f;
+    for(size_t i =0;i<train_count;++i){
+        float x = train[i][0];
+        float y = x*w;
+        float d = y - train[i][1];
+        result += d*d; 
+        // printf("actual :: %f, expected :: %d\n",y,train[i][1]);
     }
 
+    result /= train_count;
+    return result;
+}
 
+int main (){
+    srand(69); // aslo tim(0) can be used
+    //y=w*x
+    float w = rand_float()*10;
+    float rate = 0.001f;
 
+    printf("%f\n",cost(w));
+    for(size_t i =0;i<500;++i){
+        float dcost = df(cost,w);
+        w -= rate*dcost;
+        printf("%f\n",cost(w));
+    }
+    printf(RED);
+    printf("%f\n",w);
+    printf(reset);
+    
     return 0;
 }
