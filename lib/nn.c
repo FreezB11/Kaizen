@@ -11,15 +11,16 @@ float rand_float(void){
 }
 
 
-nn LinearREG(float *inputs){
+void LinearREG(float *inputs,float *weights){
     // defining weights array based on the size of the input array..
     int size = sizeof(inputs)/sizeof(inputs[0]);
-    nn_initialize weights[size];
     nn_initialize bias = rand_float();
 
     int summ = 0;
+    printf("%d\n",size);
     for(size_t i=0;i<size;i++){
-        weights[i] = rand_float();
+        printf("%f\n",inputs[i]);
+        weights[i] = 0;//rand_float()*10.0f;
     }
 
     for(size_t i=0;i<size;i++){
