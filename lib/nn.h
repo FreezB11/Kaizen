@@ -1,8 +1,9 @@
 #ifndef _NN 
 #define _NN 
 
-#define NN int
+#define nn float
+#define nn_initialize float
 
-NN LinearREG(float input[]);
+nn LinearREG(float input[]);
 
 #endif
