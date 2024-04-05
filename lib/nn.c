@@ -1,5 +1,7 @@
 #include "nn.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #define RAND_MAX 2147483647
 // nn normalization(float input[]){
 
@@ -9,7 +11,7 @@ float rand_float(void){
 }
 
 
-nn LinearREG(float inputs[]){
+nn LinearREG(float *inputs){
     // defining weights array based on the size of the input array..
     int size = sizeof(inputs)/sizeof(inputs[0]);
     nn_initialize weights[size];
