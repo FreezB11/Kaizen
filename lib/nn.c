@@ -10,6 +10,11 @@ float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
 }
 
+double sigmoid(double x) {
+    return 1 / (1 + exp(-x));
+}
+
+
 
 void LinearREG(float inputs[],float *weights,int length){
     // defining weights array based on the size of the input array..
