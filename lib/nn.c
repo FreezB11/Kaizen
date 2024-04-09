@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
+
 #define RAND_MAX 2147483647
 // nn normalization(float input[]){
 
@@ -13,7 +15,6 @@ float rand_float(void){
 double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
-
 
 
 void LinearREG(float inputs[],float *weights,int length){
