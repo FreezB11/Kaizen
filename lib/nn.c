@@ -35,9 +35,9 @@ void LinearREG(float inputs[NOS][NOI],float weights[],int length){
     }
 
     for (size_t j;j<NOS;j++ ){
-
+        printf("hello");
         for(size_t i=0;i<NOI;i++){
-            printf("%f",inputs[i][j]);
+            printf("%f\n",inputs[i][j]);
             summ += (inputs[i][j])*weights[i];
         }
         summ += bias;
