@@ -12,6 +12,6 @@
 
 nn rand_float(void);
 double sigmoid(double x);
-void LinearREG(float input[],float *weight,int length);
+void LinearREG(float input[],float weights[],int length);
 
 #endif

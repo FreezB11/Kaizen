@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "lib/calculas.h"
-#include "lib/color.h"
+#include "../lib/calculas.h"
+#include "../lib/color.h"
 
 #define RAND_MAX 2147483647
 // float eps = 1.61012e-4;
@@ -15,7 +15,8 @@ int train[][2] ={
     {1,2},
     {2,4},
     {3,6},
-    {4,8}
+    {4,8},
+    {5,10}
 }; 
 
 // float layer1_weight[];
@@ -57,7 +58,7 @@ int main (){
     float rate = 0.001f;
 
     printf("%f\n",cost(w));
-    for(size_t i =0;i<500;++i){
+    for(size_t i =0;i<2000;++i){
         float dcost = df(cost,w);
         w -= rate*dcost;
         printf("%f\n",cost(w));

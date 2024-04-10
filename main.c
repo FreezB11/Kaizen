@@ -3,19 +3,20 @@
 
 int main(){
     
-    // float inputs[5][3]={{1,2,3,4,4},
-    //                     {2,4,5,2,1},
-    //                     {0,9,7,5,4}
-    //                     };
-    // int size = sizeof(inputs)/sizeof(inputs[0]);
+    float inp[] ={1,2,3,4,5}; 
 
-    // nn_initialize weights[size];
+    float weight[5];
 
-    // LinearREG(inputs,weights,size);
 
-    // for(int i=0;i<size;i++){
-    //     printf("%f\n",weights[i]);
-    // }
+    LinearREG(inp,weight,5);
+
+    for (size_t i = 0; i < 5; i++)
+    {
+        printf("%f\n",weight[i]);
+    }
+    
+
+    printf("hello\n");
 
     return 0;
 }

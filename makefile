@@ -13,4 +13,4 @@ nn: ${FILES}
 	${CC} ${FLAGS} ${OUT_DIR} ${FILES} ${IFLAGS}
 
 run: ${OUT_DIR}
-	./${builds}
+	./${OUT_DIR}

@@ -17,9 +17,10 @@ double sigmoid(double x) {
 }
 
 
-void LinearREG(float inputs[],float *weights,int length){
+void LinearREG(float inputs[],float weights[],int length){
     // defining weights array based on the size of the input array..
     int size = length;// sizeof(inputs)/sizeof(inputs[0]);
+    srand(time(0));
     nn_initialize bias = rand_float();
 
     int summ = 0;

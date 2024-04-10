@@ -19,7 +19,7 @@ int train[][3] ={
     {1,0,1},
     {0,1,1},
     {1,1,1}
-}; 
+};
 
 float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
