@@ -14,3 +14,6 @@ nn: ${FILES}
 
 run: ${OUT_DIR}
 	./${OUT_DIR}
+
+print: $(wildcard *.c)
+	ls -la  $?
