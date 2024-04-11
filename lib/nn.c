@@ -9,8 +9,8 @@
 
 // }
 
-int NOS;// no of samples 
-int NOI;// no of inputs
+// int NOS;// no of samples 
+// int NOI;// no of inputs
 
 float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
@@ -19,9 +19,10 @@ float rand_float(void){
 double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
+int NOS = 0;
+int NOI = 0;
 
-
-void LinearREG(float (*inputs)[NOS][NOI],float weights[],int length,int NOS){
+void LinearREG(float *inputs[][NOS],float weights[],int length,int NOS){
     // defining weights array based on the size of the input array..
     int size,NOI = length;// sizeof(inputs)/sizeof(inputs[0]);
     int summ = 0;  
@@ -31,13 +32,16 @@ void LinearREG(float (*inputs)[NOS][NOI],float weights[],int length,int NOS){
     for(size_t i=0;i<size;i++){
         weights[i] = rand_float()*10.0f;
     }
-    // printf("%d %d\n",NOS,NOI);
-    for (int j=0;j<NOS;j++){
-        for(int i=0;i<NOI;i++){
-            // printf("%d %d\n",j,i);
-            printf("%f\n",*inputs[i][i]);
-            summ += (*inputs[i][j])*weights[i];
-        }
-        summ += bias;
-    }
+    printf("%d %d\n",NOS,NOI);
+    
+    printf("%f",*inputs[2][2]);
+    
+    // for (int j=0;j<NOS;j++){
+    //     for(int i=0;i<NOI;i++){
+    //         // printf("%d %d\n",j,i);
+    //         printf("%f\n",*inputs[j][i]);
+    //         summ += (*inputs[i][j])*weights[i];
+    //     }
+    //     summ += bias;
+    // }
 }
