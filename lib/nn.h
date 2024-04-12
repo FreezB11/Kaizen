@@ -9,13 +9,13 @@
 #define nn float
 #define nn_initialize float
 
-int NOS;// no of samples 
-int NOI;// no of inputs
+// int NOS;// no of samples 
+// int NOI;// no of inputs
 
 
 nn rand_float(void);
 double sigmoid(double x);
 
-void LinearREG(float *input[][NOS],float weights[],int length,int NOS);
+void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float weights[]);
 
 #endif

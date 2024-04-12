@@ -1,4 +1,6 @@
 #include <stdio.h>
+#define import #include
+
 #include "lib/nn.h"
 
 int main(){
@@ -10,7 +12,7 @@ int main(){
 
     
 
-    LinearREG(&inp,weight,5,2);
+    LinearREG(2,5,inp,weight);
 
     // for (size_t i = 0; i < 5; i++)
     // {
