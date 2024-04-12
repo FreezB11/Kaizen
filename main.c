@@ -5,15 +5,16 @@ int main(){
     
     float inp[][5] ={{1,2,3,4,5},
                     {2,3,4,5,6},
-                    {3,4,5,6,7}}; 
+                    {3,4,5,6,7},
+                    {4,5,6,7,8}}; 
 
     // float out[];
 
     float weight[5];
 
-    printf("%ld\n",sizeof(inp)/sizeof(float));
+    // printf("%d\n",LEN(inp));
 
-    LinearREG(2,5,inp,weight);
+    LinearREG(LENS(inp),5,inp,weight);
 
     return 0;
 }

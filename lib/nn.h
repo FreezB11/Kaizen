@@ -5,12 +5,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-
 #define nn float
 #define nn_initialize float
-
-// int NOS;// no of samples 
-// int NOI;// no of inputs
+#define LENS(arr) ((int) (sizeof (arr) / sizeof (arr)[0])) // no of sample sets
 
 
 nn rand_float(void);

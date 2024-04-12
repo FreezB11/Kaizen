@@ -5,12 +5,6 @@
 #include <math.h>
 
 #define RAND_MAX 2147483647
-// nn normalization(float input[]){
-
-// }
-
-// int NOS;// no of samples 
-// int NOI;// no of inputs
 
 float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
@@ -19,12 +13,10 @@ float rand_float(void){
 double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
-// int NOS = 0;
-// int NOI = 0;
 
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float weights[]){
     // defining weights array based on the size of the input array..
-    int size = NOI;// sizeof(inputs)/sizeof(inputs[0]);
+    int size = NOI;
     // printf("%ld\n == noi:: %d",sizeof(inputs[NOI]),NOI); failing to calcualte the size in here
     int summ = 0;  
     srand(time(0));
