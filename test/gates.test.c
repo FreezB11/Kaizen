@@ -37,6 +37,7 @@ float cost(float w1,float w2,float b){
 }
 int main(){
 
+    printf("%ld\n",train_count);
     srand(time(0));
     float w1 = rand_float();
     float w2 = rand_float();
@@ -54,7 +55,7 @@ int main(){
         w1 -= rate*dw1;
         w2 -= rate*dw2;
         b  -= rate*dbias;
-        printf("w1= %f,w2 = %f,b = %f || ERR = %f\n",w1,w2,b,cost(w1,w2,b));
+        // printf("w1= %f,w2 = %f,b = %f || ERR = %f\n",w1,w2,b,cost(w1,w2,b));
     }
 
     for(size_t i=0;i<2;++i){

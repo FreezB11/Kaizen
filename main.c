@@ -13,6 +13,6 @@ int main(){
 
     float weight[5];
 
-    LinearREG(LENS(inp),5,inp,output,weight);
+    LinearREG(LENS(inp),2,inp,output,weight);
     return 0;
 }
