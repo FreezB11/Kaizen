@@ -26,11 +26,12 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
     }
 
     for (int i=0;i<NOS;i++){
+        summ = 0.0f;
         for(int j=0;j<NOI;j++){
-            printf("%f\n",inputs[i][j]);
-            summ += (inputs[i][j])*weights[i];
+            // printf("i1=%f w1=%f\n",inputs[i][j],weights[j]);
+            summ += (inputs[i][j])*(weights[j]);
         }
-        summ += bias;
-        printf("sum = %f\n",summ);
+        //float y = sigmoid(summ+bias);
+        printf("sum=%f\n",summ+bias);
     }
 }
