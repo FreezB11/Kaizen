@@ -14,7 +14,7 @@ double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
 
-float cost(){
+float cost(float weights[],float bias){
 
 }
 
@@ -37,12 +37,12 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
             summ += (inputs[i][j])*(weights[j]);
         }
         float y = sigmoid(summ+bias);
-        cost += ((y-output[i])*(y-output[i]));
-        cost = cost/NOS;
-        printf("predicted=%f,, actual==%f,,, cost == %f\n",y,output[i],cost);
-        // printf("sum=%f\n",summ+bias);
-        for(int it=0;it<10000;it++){
+        // cost += ((y-output[i])*(y-output[i]));
+        // cost = cost/NOS;
+        // printf("predicted=%f,, actual==%f,,, cost == %f\n",y,output[i],cost);
+        // // printf("sum=%f\n",summ+bias);
+        // for(int it=0;it<10000;it++){
 
-        }
+        // }
     }
 }
