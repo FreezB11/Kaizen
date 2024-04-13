@@ -1,7 +1,7 @@
 CC = gcc
 FLAGS = -o 
 IFLAGS = -lm
-FILES = main.c lib/nn.c
+FILES = main.c lib/nn.c lib/calculas.c
 # OBJ_FILES = main.o 
 OUT_DIR = builds/main
 # gcc -o builds/main main.c

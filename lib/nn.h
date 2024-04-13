@@ -13,6 +13,6 @@
 nn rand_float(void);
 double sigmoid(double x);
 
-void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float weights[]);
+void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]);
 
 #endif

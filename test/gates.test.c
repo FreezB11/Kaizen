@@ -28,14 +28,10 @@ float rand_float(void){
 float cost(float w1,float w2,float b){
     float result = 0.0f;
     for(size_t i =0;i<train_count;++i){
-        float x1 = train[i][0];
-        float x2 = train[i][1];
-        float y = sigmoidf(x1*w1+x2*w2+b);
+        float y = sigmoidf((train[i][0])*w1+(train[i][1])*w2+b);
         float d = y - train[i][2];
         result += d*d; 
-        // printf("actual :: %f, expected :: %d\n",y,train[i][1]);
     }
-
     result /= train_count;
     return result;
 }

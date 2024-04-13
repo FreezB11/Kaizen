@@ -5,5 +5,6 @@
 
 float df(float (*func)(float),float x);
 
+//float tanh(float x);
 
 #endif

@@ -1,20 +1,18 @@
 #include <stdio.h>
 #include "lib/nn.h"
+#include "lib/calculas.h"
 
 int main(){
     
-    float inp[][5] ={{1,2,3,4,5},
-                    {2,3,4,5,6},
-                    {3,4,5,6,7},
-                    {4,5,6,7,8}}; 
+    float inp[][2] ={{0,0},
+                    {1,0},
+                    {0,1},
+                    {1,1}}; 
 
-    // float out[];
+    float output[4]={0,0,0,1};
 
     float weight[5];
 
-    // printf("%d\n",LEN(inp));
-
-    LinearREG(LENS(inp),5,inp,weight);
-
+    LinearREG(LENS(inp),5,inp,output,weight);
     return 0;
 }

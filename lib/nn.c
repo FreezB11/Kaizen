@@ -14,24 +14,24 @@ double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
 
-void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float weights[]){
+float cost(float weight[],float bias){
+
+}
+
+void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]){
     // defining weights array based on the size of the input array..
-    int size = NOI;
-    // printf("%ld\n == noi:: %d",sizeof(inputs[NOI]),NOI); failing to calcualte the size in here
-    int summ = 0;  
+    float summ = 0;  
     srand(time(0));
     nn_initialize bias = rand_float();
   
-    for(size_t i=0;i<size;i++){
+    for(size_t i=0;i<NOI;i++){
         weights[i] = rand_float()*10.0f;
     }
-    // printf("%d %d\n",NOS,NOI);
-    
     for (int i=0;i<NOS;i++){
         for(int j=0;j<NOI;j++){
-            // printf("%f\n",inputs[i][j]);
             summ += (inputs[i][j])*weights[i];
         }
         summ += bias;
+        // printf("%f, %f\n",summ,bias);
     }
 }
