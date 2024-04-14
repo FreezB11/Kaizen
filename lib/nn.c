@@ -43,4 +43,6 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
     }
     float c1,c2;
     float dw1;
+    float costt = cost(NOS,NOI,inputs,output,weights,bias);
+    printf("%f\n",costt);
 }
