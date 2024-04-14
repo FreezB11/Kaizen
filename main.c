@@ -2,9 +2,11 @@
 #include "lib/nn.h"
 #include "lib/calculas.h"
 
+#define inp_size 2
+
 int main(){
     
-    float inp[][2] ={{0,0},
+    float inp[][inp_size] ={{0,0,},
                     {1,0},
                     {0,1},
                     {1,1}}; 
@@ -13,6 +15,6 @@ int main(){
 
     float weight[5];
 
-    LinearREG(LENS(inp),2,inp,output,weight);
+    LinearREG(LENS(inp),inp_size,inp,output,weight);
     return 0;
 }

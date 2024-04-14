@@ -6,6 +6,8 @@
 
 #define RAND_MAX 2147483647
 
+float eps = 1.61012e-4;
+
 float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
 }
@@ -14,10 +16,20 @@ double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
 
-float cost(float weights[],float bias){
-
+float cost(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[],float bias){
+    float result = 0.0f;
+     for (int i=0;i<NOS;i++){
+        float summ = 0.0f;
+        for(int j=0;j<NOI;j++){
+            summ += (inputs[i][j])*(weights[j]);
+        }
+        float y = sigmoid(summ+bias);
+        float d = y-output[i];
+        result += y*y;
+    }
+    result /= NOS;
+    return result;
 }
-
 
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]){
     // defining weights array based on the size of the input array..
@@ -29,20 +41,6 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
         weights[i] = rand_float()*10.0f;
         printf("weight[%d]==%f\n",i,weights[i]);
     }
-    float cost = 0.0f;
-    for (int i=0;i<NOS;i++){
-        summ = 0.0f;
-        for(int j=0;j<NOI;j++){
-            // printf("i1=%f w1=%f\n",inputs[i][j],weights[j]);
-            summ += (inputs[i][j])*(weights[j]);
-        }
-        float y = sigmoid(summ+bias);
-        // cost += ((y-output[i])*(y-output[i]));
-        // cost = cost/NOS;
-        // printf("predicted=%f,, actual==%f,,, cost == %f\n",y,output[i],cost);
-        // // printf("sum=%f\n",summ+bias);
-        // for(int it=0;it<10000;it++){
-
-        // }
-    }
+    float c1,c2;
+    float dw1;
 }
