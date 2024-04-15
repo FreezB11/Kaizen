@@ -1,3 +1,4 @@
+// main.c
 #include <stdlib.h>
 #include <stdio.h>
 #include "nn.h"
@@ -20,7 +21,17 @@ int main() {
         printf("%.2f ", model.coefficients[i]);
     }
     printf("\n");
+
+    // Test input
     double test_input[] = {6, 7}; // Adjust this array to match the number of features
+
+    // Ensure that test_input matches the number of features
+    if (sizeof(test_input) / sizeof(test_input[0]) != num_features) {
+        printf("Test input does not match the number of features.\n");
+        return 1; // Return with an error code
+    }
+
+    // Make prediction for the test input
     printf("Predicted value for test input: %.2f\n", predict_linear_regression(model, test_input));
 
     // Free allocated memory

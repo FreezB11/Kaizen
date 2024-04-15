@@ -1,5 +1,3 @@
-// nn.c
-
 #include "nn.h"
 #include <stdlib.h>
 

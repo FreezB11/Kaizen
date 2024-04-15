@@ -5,8 +5,8 @@
 #include <math.h>
 
 #define RAND_MAX 2147483647
-#define rate 0.001f
-float eps = 1.61012e-3;
+#define rate 0.01f
+float eps = 1.61012e-2;
 
 float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
@@ -31,7 +31,7 @@ float cost(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]
     return result;
 }
 
-void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[],float *bias){
+void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float weights[NOI],float *bias){
     // defining weights array based on the size of the input array..
     float summ = 0.0f;
     float w1[NOI];
@@ -45,27 +45,30 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
         w1[i]=weights[i];
         printf("weight[%d]==%f\n",i,weights[i]);
     }
+    // for (int i = 0; i < NOS; i++)
+    // {
+    //     printf("output[%d]== %f\n",i,output[i]);
+    // }
+    
     float c1,c2;
     float costt = cost(NOS,NOI,inputs,output,weights,*bias);
     printf("initial cost==%f\n",costt);
  
     
-    for(int k=0;k<1000*1000;k++){
+    for(int k=0;k<1000;k++){
         for (int i = 0; i < NOI; i++)
         {
             w1[i] += eps;
-            w2[i] -= eps;
-            dw[i] = (cost(NOS,NOI,inputs,output,w1,*bias)-cost(NOS,NOI,inputs,output,w2,*bias))/(2*eps);
-            w1[i] -= eps;
-            w2[i] += eps;
-            float db = (cost(NOS,NOI,inputs,output,w1,*bias+eps)-cost(NOS,NOI,inputs,output,w2,*bias-eps))/(2*eps);
-            weights[i] -= rate*(dw[i]);
-            *bias -= rate*db;
+            dw[i] = (cost(NOS,NOI,inputs,output,w1,*bias)-costt)/(eps);
+            //printf("checking dw= %f\n",dw[i]);
+            //w1[i] -= eps;
+            weights[i] = weights[i] - rate*dw[i];
             w1[i] = weights[i];
-            w2[i] = weights[i];
         }
+        float db = (cost(NOS,NOI,inputs,output,weights,*bias+eps)-costt)/(eps);
+        *bias = *bias - rate*db;
         float costRUNT = cost(NOS,NOI,inputs,output,weights,*bias);
-        //printf("cost == %f\n",costRUNT);
+       // printf("cost == %f\n",costRUNT);
     }
 
     float costAFT = cost(NOS,NOI,inputs,output,weights,*bias);
