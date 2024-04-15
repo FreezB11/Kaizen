@@ -36,6 +36,7 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
     float summ = 0.0f;
     float w1[NOI];
     float w2[NOI];
+    float dw[NOI];
     //srand(time(0));
     nn_initialize bias = rand_float();
     printf("bais == %f\n",bias);
@@ -58,6 +59,7 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
         c2 = cost(NOS,NOI,inputs,output,w2,bias); 
         w2[i] += eps;
         printf("c2 == %f\n",c2);
+        dw[i] = (c1-c2)/(2*eps);
     }
     
 
