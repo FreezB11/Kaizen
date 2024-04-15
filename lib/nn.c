@@ -5,7 +5,7 @@
 #include <math.h>
 
 #define RAND_MAX 2147483647
-#define rate 0.1
+#define rate 0.001f
 float eps = 1.61012e-3;
 
 float rand_float(void){
@@ -58,9 +58,11 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
             dw[i] = (cost(NOS,NOI,inputs,output,w1,*bias)-cost(NOS,NOI,inputs,output,w2,*bias))/(2*eps);
             w1[i] -= eps;
             w2[i] += eps;
+            float db = (cost(NOS,NOI,inputs,output,w1,*bias+eps)-cost(NOS,NOI,inputs,output,w2,*bias-eps))/(2*eps);
             weights[i] -= rate*(dw[i]);
-            w1[i] =weights[i];
-            w2[i] =weights[i];
+            *bias -= rate*db;
+            w1[i] = weights[i];
+            w2[i] = weights[i];
         }
         float costRUNT = cost(NOS,NOI,inputs,output,weights,*bias);
         //printf("cost == %f\n",costRUNT);
@@ -72,25 +74,7 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weigh
     for(int i=0;i<NOI;i++){
         printf("after train weight[%d]==%f\n",i,weights[i]);
     }
+    printf("after train bias == %f\n",*bias);
 
 
-
-
-
-
-
-
-
-
-    // for (int i = 0; i < NOI; i++)
-    // {
-    //     weights[i] += eps;
-    //     c1 = cost(NOS,NOI,inputs,output,weights,bias); 
-    //     // weights[i] += 3*eps;
-    //     printf("%f\n",c1);
-    //     weights[i] -= 2*eps;
-    //     c2 = cost(NOS,NOI,inputs,output,weights,bias);
-    //     weights[i] += 2*eps;
-    //     printf("%f\n",c2);
-    // }
 }

@@ -17,11 +17,10 @@ int main(){
 
     LinearREG(LENS(inp),inp_size,inp,output,weight,&bias);
 
-    for(size_t i=0;i<2;++i){
-        for(size_t j=0;j<2;++j){
-            printf("%zu | %zu == %f\n",i,j,sigmoid(i*weight[i]+j*weight[j]+bias));
-        }
-    }
+    printf("0 || 0 == %f\n",sigmoid(0*weight[0]+0*weight[1]+bias));
+    printf("0 || 1 == %f\n",sigmoid(0*weight[0]+1*weight[1]+bias));
+    printf("1 || 0 == %f\n",sigmoid(1*weight[0]+0*weight[1]+bias));
+    printf("1 || 1 == %f\n",sigmoid(1*weight[0]+1*weight[1]+bias));
 
     return 0;
 }
