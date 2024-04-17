@@ -9,7 +9,7 @@ float sigmoidf(float x){
 }
 
 #define RAND_MAX 2147483647
-float eps = 1.61012e-4;
+float eps = 1.61012e-3;
 
 #define train_count (sizeof(train)/sizeof(train[0]))
 
@@ -43,12 +43,12 @@ int main(){
     float w2 = rand_float();
     float b = rand_float();
 
-    float rate = 0.1f;
+    float rate = 0.01f;
 
     printf("w1= %f,w2 = %f, bias = %f\n",w1,w2,b);
     printf("cost = %f\n",cost(w1,w2,b));
 
-    for(size_t i =0;i<100*1000;++i){
+    for(size_t i =0;i<1000*1000;++i){
         float dw1 = (cost(w1+eps,w2,b)-cost(w1-eps,w2,b))/(2*eps);
         float dw2 = (cost(w1,w2+eps,b)-cost(w1,w2-eps,b))/(2*eps);
         float dbias = (cost(w1,w2,b+eps)-cost(w1,w2,b-eps))/(2*eps);

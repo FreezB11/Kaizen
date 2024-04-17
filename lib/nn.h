@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+//#include "math/calculas.h"
+
 #define nn float
 #define nn_initialize float
 #define LENS(arr) ((int) (sizeof (arr) / sizeof (arr)[0])) // no of sample sets
