@@ -15,6 +15,10 @@ int main(){
     float bias;
     float weight[inp_size];
 
+    double test[2][2]={{1,2},{3,4}};
+
+    //Ntest(&test[0][0]);
+
     LinearREG(LENS(inp),inp_size,inp,output,weight,&bias);
 
     printf("0 || 0 == %f actual == %f\n",sigmoid(0*weight[0]+0*weight[1]+bias),output[0]);

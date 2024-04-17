@@ -32,6 +32,18 @@ float cost(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]
     return result;
 }
 
+void Ntest(double *x){
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            printf("%f\n",*((x + i * 2) + j));
+        }
+        
+    }
+    
+}
+
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float weights[NOI],float *bias){
     // defining weights array based on the size of the input array..
     float summ = 0.0f;
