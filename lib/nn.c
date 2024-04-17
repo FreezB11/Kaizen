@@ -5,8 +5,8 @@
 #include <math.h>
 
 #define RAND_MAX 2147483647
-#define rate 0.01f
-float eps = 1.61012e-2;
+#define rate 0.001f
+float eps = 1.61012e-3;
 
 float rand_float(void){
     return (float)rand()/(float)RAND_MAX;
@@ -24,6 +24,7 @@ float cost(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]
             summ += (inputs[i][j])*(weights[j]);
         }
         float y = sigmoid(summ+bias);
+        //float y = summ +bias;
         float d = y-output[i];
         result += y*y;
     }
@@ -37,7 +38,7 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float we
     float w1[NOI];
     float w2[NOI];
     float dw[NOI];
-    //srand(time(0));
+    srand(time(0));
     *bias = rand_float();
     printf("bais == %f\n",*bias);
     for(int i=0;i<NOI;i++){
@@ -45,39 +46,39 @@ void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float we
         w1[i]=weights[i];
         printf("weight[%d]==%f\n",i,weights[i]);
     }
-    // for (int i = 0; i < NOS; i++)
-    // {
-    //     printf("output[%d]== %f\n",i,output[i]);
-    // }
     
     float c1,c2;
     float costt = cost(NOS,NOI,inputs,output,weights,*bias);
     printf("initial cost==%f\n",costt);
  
     
-    for(int k=0;k<1000;k++){
-        for (int i = 0; i < NOI; i++)
-        {
-            w1[i] += eps;
-            dw[i] = (cost(NOS,NOI,inputs,output,w1,*bias)-costt)/(eps);
-            //printf("checking dw= %f\n",dw[i]);
-            //w1[i] -= eps;
-            weights[i] = weights[i] - rate*dw[i];
-            w1[i] = weights[i];
-        }
-        float db = (cost(NOS,NOI,inputs,output,weights,*bias+eps)-costt)/(eps);
-        *bias = *bias - rate*db;
-        float costRUNT = cost(NOS,NOI,inputs,output,weights,*bias);
-       // printf("cost == %f\n",costRUNT);
-    }
 
-    float costAFT = cost(NOS,NOI,inputs,output,weights,*bias);
-    printf("AFTER cost==%f\n",costAFT);
-    
-    for(int i=0;i<NOI;i++){
-        printf("after train weight[%d]==%f\n",i,weights[i]);
-    }
-    printf("after train bias == %f\n",*bias);
+
+    // for(int k=0;k<100*100;k++){
+    //     for (int i = 0; i < NOI; i++)
+    //     {
+    //         w1[i] += eps;
+    //         w2[i] -= eps;
+    //         dw[i] = (cost(NOS,NOI,inputs,output,w1,*bias)-cost(NOS,NOI,inputs,output,w2,*bias))/(2*eps);
+    //         weights[i] -= rate*dw[i];
+    //         //w1[i] = w2[i] = weights[i];
+    //         w1[i] -= eps;
+    //         w2[i] += eps;
+
+    //     }
+    //     float db = (cost(NOS,NOI,inputs,output,weights,*bias+eps)-cost(NOS,NOI,inputs,output,weights,*bias-eps))/(2*eps);
+    //     *bias -= rate*db;
+    //     float costRUNT = cost(NOS,NOI,inputs,output,weights,*bias);
+    //     //printf("cost == %f\n",costRUNT);
+    // }
+
+    //float costAFT = cost(NOS,NOI,inputs,output,weights,*bias);
+    //printf("AFTER cost==%f\n",costAFT);
+    //
+    //for(int i=0;i<NOI;i++){
+    //    printf("after train weight[%d]==%f\n",i,weights[i]);
+    //}
+    //printf("after train bias == %f\n",*bias);
 
 
 }

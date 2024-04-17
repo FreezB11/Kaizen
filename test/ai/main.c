@@ -35,7 +35,7 @@ int main() {
     printf("Predicted value for test input: %.2f\n", predict_linear_regression(model, test_input));
 
     // Free allocated memory
-    free(model.coefficients);
+    //free(model.coefficients);
 
     return 0;
 }
