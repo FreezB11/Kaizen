@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "lib/nn.h"
 
-
 #define inp_size 2
 
 int main(){
@@ -17,7 +16,7 @@ int main(){
 
     double test[2][2]={{1,2},{3,4}};
 
-    //Ntest(&test[0][0]);
+    Ntest(&test[0][0]);
 
     LinearREG(LENS(inp),inp_size,inp,output,weight,&bias);
 

@@ -21,6 +21,8 @@ typedef struct{
     float *X;
 }NN;
 
+
+
 void Ntest(double *x);
 
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[],float *bias);

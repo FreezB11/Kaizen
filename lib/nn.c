@@ -44,6 +44,17 @@ void Ntest(double *x){
     
 }
 
+NN *create(int NOS,int NOI){
+    NN *neural = (NN*)malloc(sizeof(NN));
+    if (neural == NULL){
+        printf("Memory allocation failed.\n");
+        exit(1); // Exit program if memory allocation fails
+    }
+    neural->nos = NOS;
+    neural->noi = NOI;
+    
+}
+
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float weights[NOI],float *bias){
     // defining weights array based on the size of the input array..
     float summ = 0.0f;
