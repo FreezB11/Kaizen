@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include "utils/color.h"
 
 #define nn float
 #define nn_initialize float
@@ -14,16 +15,6 @@
 double sigmoid(double x);
 nn rand_float(void);
 double sigmoid(double x);
-
-typedef struct{
-    int nos;
-    int noi;
-    float *X;
-}NN;
-
-
-
-void Ntest(double *x);
 
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[],float *bias);
 

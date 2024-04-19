@@ -5,7 +5,7 @@
 #include <math.h>
 
 #define RAND_MAX 2147483647
-#define rate 0.001f
+#define rate 0.01f
 float eps = 1.61012e-3;
 
 float rand_float(void){
@@ -26,76 +26,69 @@ float cost(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[]
         float y = sigmoid(summ+bias);
         //float y = summ +bias;
         float d = y-output[i];
-        result += y*y;
+        result += d*d;
     }
     result /= NOS;
     return result;
 }
 
-void Ntest(double *x){
-    for (int i = 0; i < 2; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            printf("%f\n",*((x + i * 2) + j));
-        }
-        
-    }
-    
-}
+// float forward(){
 
-NN *create(int NOS,int NOI){
-    NN *neural = (NN*)malloc(sizeof(NN));
-    if (neural == NULL){
-        printf("Memory allocation failed.\n");
-        exit(1); // Exit program if memory allocation fails
-    }
-    neural->nos = NOS;
-    neural->noi = NOI;
-    
-}
+// }
 
 void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float weights[NOI],float *bias){
     // defining weights array based on the size of the input array..
     float summ = 0.0f;
-    float w1[NOI];
-    float w2[NOI];
     float dw[NOI];
     srand(time(0));
     *bias = rand_float();
+    printf(BRED);
     printf("bais == %f\n",*bias);
+    printf(reset);
     for(int i=0;i<NOI;i++){
         weights[i] = rand_float()*10.0f;
-        w2[i]=w1[i]=weights[i];
+        printf(BYEL);
         printf("weight[%d]==%f\n",i,weights[i]);
+        printf(reset);
     }
     
     float costt = cost(NOS,NOI,inputs,output,weights,*bias);
     printf("initial cost==%f\n",costt);
  
-    for(int k=0;k<1100;k++){
-        for (int i = 0; i < NOI; i++)
-        {
-            w1[i] += eps;
-            dw[i] = (cost(NOS,NOI,inputs,output,w1,*bias)-costt)/(eps);
-            weights[i] -= rate*dw[i];
-            w1[i] = weights[i];
-            //w1[i] -= eps;
-
+    //float var = 0.0f;
+    float t =0.0f;
+    float dtb;
+    for(int itr=0;itr<100*100;itr++)
+        for(int j=0;j<NOI;j++){
+            // float var = 0.0f;
+            for(int i=0;i<NOS;i++){
+                float var = 0.0f;
+                for(int j=0;j<NOI;j++){
+                    var += (inputs[i][j]*weights[j]);
+                    //printf("%f\n",var);
+                }
+                var+=*bias;
+                t += (output[i]-sigmoid(var))*(sigmoid(var))*(1-sigmoid(var))*inputs[i][j];
+                dtb += (output[i]-sigmoid(var))*(sigmoid(var))*(1-sigmoid(var));
+            }
+            dw[j]=t;
+            weights[j] = weights[j] + rate*dw[j];
+            *bias = *bias +rate*dtb ;
         }
-        float db = (cost(NOS,NOI,inputs,output,w2,*bias+eps)-costt)/(eps);
-        *bias -= rate*db;
-        // float costRUNT = cost(NOS,NOI,inputs,output,weights,*bias);
-        //printf("cost == %f\n",costRUNT);
-    }
 
-    float costAFT = cost(NOS,NOI,inputs,output,weights,*bias);
-    printf("AFTER cost==%f\n",costAFT);
-    
-    for(int i=0;i<NOI;i++){
-       printf("after train weight[%d]==%f\n",i,weights[i]);
-    }
-    printf("after train bias == %f\n",*bias);
+    printf("updated bias is %f\n",*bias);
+    printf("w1=%f,,w2=%f\n",weights[0],weights[1]);
 
+    float cost2 = cost(NOS,NOI,inputs,output,weights,*bias);
+    printf("updated cost==%f\n",cost2);
+
+
+
+
+
+
+
+
+    //dw[j] += ((output[i]/NOI)-var)
 
 }

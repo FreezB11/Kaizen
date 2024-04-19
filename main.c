@@ -5,18 +5,14 @@
 
 int main(){
     
-    float inp[][inp_size] ={{1,1},
-                    {1,0},
+    float inp[][inp_size] ={{0,0},
                     {0,1},
-                    {0,0}}; 
+                    {1,0},
+                    {1,1}}; 
 
-    float output[4]={1,0,0,0};
+    float output[4]={0,0,0,1};
     float bias;
     float weight[inp_size];
-
-    double test[2][2]={{1,2},{3,4}};
-
-    Ntest(&test[0][0]);
 
     LinearREG(LENS(inp),inp_size,inp,output,weight,&bias);
 
