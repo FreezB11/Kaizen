@@ -20,7 +20,7 @@ typedef struct{
 
 typedef struct{
     int non;
-    neuron *neurons;
+    neuron **neurons;
 }nlayer;
 
 
@@ -30,7 +30,7 @@ typedef struct{
     nlayer *nol;
 }Nnetwrk;
 
-neuron *createNeuron(int noi);
+neuron *createNeuron(int noi,float inputs[]);
 nlayer *createLayer(int non,int non_prevLayer);
 
 
