@@ -19,9 +19,10 @@ typedef struct{
     float output;
 }neuron;
 
-typedef struct{
+typedef struct nlayer{
     int non;
     neuron **neurons;
+    struct nlayer *prev_layer;
 }nlayer;
 
 
