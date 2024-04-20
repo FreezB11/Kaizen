@@ -2,6 +2,7 @@
 #define _NN_H_
 
 #include <stdlib.h>
+#include "matrix.h"
 
 #define LENS(arr) ((int) (sizeof (arr) / sizeof (arr)[0])) // no of sample sets
 
@@ -26,15 +27,16 @@ typedef struct{
 
 typedef struct{
     int NOS;
-    int NOI;
-    nlayer *nol;
+    //Matrix ntwrk;
+    Matrix input;
+    int *ntwrk_struct;
+    nlayer **layers;
 }Nnetwrk;
 
 neuron *createNeuron(int noi,float inputs[]);
 nlayer *createLayer(int non,int non_prevLayer);
+Nnetwrk *createNetwork(int nol,int noi,int nstruct[]);
 
-
-Nnetwrk *initialize(int nol);
 Nnetwrk forward(Nnetwrk neural);
 
 
