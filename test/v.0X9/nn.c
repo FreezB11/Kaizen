@@ -7,7 +7,7 @@ neuron *createNeuron(int noi,float inputs[]){
 
     neuron *n = (neuron*)malloc(sizeof(neuron));
     n->input = (float*)malloc(noi*sizeof(float));
-
+    n->noi = noi;
     for (size_t i = 0; i < noi; i++){
         n->input[i] = inputs[i];
     }
@@ -23,6 +23,9 @@ nlayer *createLayer(int non,int non_prevLayer){
     for (size_t i = 0; i < non; i++){
         layer->neurons[i] = createNeuron(non_prevLayer,0); // here i have to put smtg else in place of 0(ZERO)
     }
+
+    printf("%p\n",layer);
+
     return layer;
 }
 
@@ -32,8 +35,8 @@ Nnetwrk *createNetwork(int nol,int noi,int nstruct[nol]){
 
     for (int i = 0; i < nol; i++)
     {
-        printf("%d\n",nstruct[i]);
-        network->layers[i] = createLayer(nstruct[i],nstruct[i]);
+        //printf("%d\n",nstruct[i]);
+        network->layers[i] = createLayer(0,nstruct[i]);
     }
     
     return network; 

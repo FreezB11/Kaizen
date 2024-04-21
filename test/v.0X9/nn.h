@@ -26,6 +26,7 @@ typedef struct nlayer{
 }nlayer;
 
 
+
 typedef struct{
     int NOS;
     //Matrix ntwrk;

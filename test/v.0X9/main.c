@@ -14,7 +14,7 @@ int main(){
     Nnetwrk *testnet = createNetwork(5,0,nns);
     
 
-
+    free(testnet);
 
 
 
