@@ -24,7 +24,7 @@ nlayer *createLayer(int non,int non_prevLayer){
         layer->neurons[i] = createNeuron(non_prevLayer,0); // here i have to put smtg else in place of 0(ZERO)
     }
 
-    printf("%p\n",layer);
+    //printf("%p\n",&(layer->neurons));
 
     return layer;
 }
@@ -35,9 +35,16 @@ Nnetwrk *createNetwork(int nol,int noi,int nstruct[nol]){
 
     for (int i = 0; i < nol; i++)
     {
+
         //printf("%d\n",nstruct[i]);
-        network->layers[i] = createLayer(0,nstruct[i]);
+        nlayer *inp_layer = createLayer(nstruct[i],0);
+        network->layers[i] = inp_layer;//= createLayer(nstruct[i],0);
+        printf("addr of layer[%d] = %p\n",i,&(network->layers[i]));
+        printf("%ld\n",sizeof(network->layers[i]));
     }
     
+    //printf("%p\n",&(network->layers));
+
     return network; 
+    free(network);
 }

@@ -16,25 +16,6 @@ int main(){
 
     free(testnet);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // neuron *n = createNeuron(5,input);
     // printf("%f\n",n->input[4]);
 
