@@ -9,6 +9,10 @@ int main(){
 
     int nns[5]={3,1,0,5,9};
 
+    // printf("%ld\n",sizeof(neuron));
+    // printf("%ld\n",sizeof(nlayer));
+    // printf("%ld\n",sizeof(Nnetwrk));
+
     //Matrix inp = create_matrix(4,2);
 
     Nnetwrk *testnet = createNetwork(5,0,nns);
