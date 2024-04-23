@@ -31,7 +31,7 @@ nlayer *createLayer(int non,int non_prevLayer){
     return layer;
 }
 
-Nnetwrk *createNetwork(int nol,int noi,int nstruct[nol]){
+Nnetwrk *createNetwork(int nol,int noi,int* nstruct){
     Nnetwrk *network = (Nnetwrk*)malloc(sizeof(Nnetwrk));
     printf("%ld\n",sizeof(network));
     network->layers = (nlayer**)malloc(nol*sizeof(nlayer*));
@@ -42,12 +42,10 @@ Nnetwrk *createNetwork(int nol,int noi,int nstruct[nol]){
         //printf("%d\n",nstruct[i]);
         nlayer *inp_layer = createLayer(nstruct[i],0);
         network->layers[i] = inp_layer;//= createLayer(nstruct[i],0);
-        printf("addr of layer[%d] = %p\n",i,&(network->layers[i]));
+        //printf("addr of layer[%d] = %p\n",i,&(network->layers[i]));
         //printf("%ld\n",sizeof(&(network->layers[i])));
     }
-    
-    //printf("%p\n",&(network->layers));
-    printf("%ld\n",sizeof(network));
+
     return network; 
     free(network);
 }
