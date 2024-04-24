@@ -1,94 +1,31 @@
 #include "nn.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
+#include "stdlib.h"
 
-#define RAND_MAX 2147483647
-#define rate 0.01f
-float eps = 1.61012e-3;
 
-float rand_float(void){
-    return (float)rand()/(float)RAND_MAX;
-}
-
-double sigmoid(double x) {
-    return 1 / (1 + exp(-x));
-}
-
-float cost(int NOS,int NOI,float inputs[NOS][NOI],float output[],float weights[],float bias){
-    float result = 0.0f;
-     for (int i=0;i<NOS;i++){
-        float summ = 0.0f;
-        for(int j=0;j<NOI;j++){
-            summ += (inputs[i][j])*(weights[j]);
-        }
-        float y = sigmoid(summ+bias);
-        //float y = summ +bias;
-        float d = y-output[i];
-        result += d*d;
-    }
-    result /= NOS;
-    return result;
-}
-
-// float forward(){
-
-// }
-
-void LinearREG(int NOS,int NOI,float inputs[NOS][NOI],float output[NOS],float weights[NOI],float *bias){
-    // defining weights array based on the size of the input array..
-    float summ = 0.0f;
-    float dw[NOI];
-    srand(time(0));
-    *bias = rand_float();
-    printf(BRED);
-    printf("bais == %f\n",*bias);
-    printf(reset);
-    for(int i=0;i<NOI;i++){
-        weights[i] = rand_float()*10.0f;
-        printf(BYEL);
-        printf("weight[%d]==%f\n",i,weights[i]);
-        printf(reset);
+network* create_network(int num_layers, int* num_neurons_per_layer) {
+    network* net = (network*)malloc(sizeof(network));
+    net->num_layers = num_layers;
+    net->layers = (layer*)malloc(num_layers * sizeof(layer));
+    
+    for (int i = 0; i < num_layers; i++) {
+        net->layers[i].num_neurons = num_neurons_per_layer[i];
+        net->layers[i].neurons = (neuron*)malloc(num_neurons_per_layer[i] * sizeof(neuron));
     }
     
-    float costt = cost(NOS,NOI,inputs,output,weights,*bias);
-    printf("initial cost==%f\n",costt);
- 
-    //float var = 0.0f;
-    float t =0.0f;
-    float dtb;
-    for(int itr=0;itr<100*100;itr++)
-        for(int j=0;j<NOI;j++){
-            // float var = 0.0f;
-            for(int i=0;i<NOS;i++){
-                float var = 0.0f;
-                for(int j=0;j<NOI;j++){
-                    var += (inputs[i][j]*weights[j]);
-                    //printf("%f\n",var);
-                }
-                var+=*bias;
-                t += (output[i]-sigmoid(var))*(sigmoid(var))*(1-sigmoid(var))*inputs[i][j];
-                dtb += (output[i]-sigmoid(var))*(sigmoid(var))*(1-sigmoid(var));
+    return net;
+}
+
+void link_layers(network* net) {
+    for (int i = 0; i < net->num_layers - 1; i++) {
+        for (int j = 0; j < net->layers[i].num_neurons; j++) {
+            net->layers[i].neurons[j].output = 0.0; // Initialize output to zero for each neuron
+            net->layers[i].neurons[j].bias = 0.0;   // Initialize bias to zero for each neuron
+            for (int k = 0; k < net->layers[i + 1].num_neurons; k++) {
+                // Establish connections between neurons in adjacent layers
+                // Set the output of neurons in the current layer as the input of neurons in the next layer
+                // For simplicity, let's assume each neuron in the next layer receives input from all neurons in the current layer
+                net->layers[i + 1].neurons[k].input += net->layers[i].neurons[j].output;
             }
-            dw[j]=t;
-            weights[j] = weights[j] + rate*dw[j];
-            *bias = *bias +rate*dtb ;
         }
-
-    printf("updated bias is %f\n",*bias);
-    printf("w1=%f,,w2=%f\n",weights[0],weights[1]);
-
-    float cost2 = cost(NOS,NOI,inputs,output,weights,*bias);
-    printf("updated cost==%f\n",cost2);
-
-
-
-
-
-
-
-
-    //dw[j] += ((output[i]/NOI)-var)
-
+    }
 }

@@ -1,25 +1,23 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include "lib/nn.h"
 
-#define inp_size 2
 
-int main(){
+int main() {
+    int num_layers = 3;
+    int num_neurons_per_layer[] = {5, 3, 2};
     
-    float inp[][inp_size] ={{0,0},
-                    {0,1},
-                    {1,0},
-                    {1,1}}; 
-
-    float output[4]={0,0,0,1};
-    float bias;
-    float weight[inp_size];
-
-    LinearREG(LENS(inp),inp_size,inp,output,weight,&bias);
-
-    printf("0 || 0 == %f actual == %f\n",sigmoid(0*weight[0]+0*weight[1]+bias),output[0]);
-    printf("0 || 1 == %f actual == %f\n",sigmoid(0*weight[0]+1*weight[1]+bias),output[1]);
-    printf("1 || 0 == %f actual == %f\n",sigmoid(1*weight[0]+0*weight[1]+bias),output[2]);
-    printf("1 || 1 == %f actual == %f\n",sigmoid(1*weight[0]+1*weight[1]+bias),output[3]);
-
+    network* net = create_network(num_layers, num_neurons_per_layer);
+    link_layers(net);
+    
+    // Now net contains the initialized network with the respective number of layers and neurons,
+    // and the layers are linked according to your connectivity rules
+    
+    // Don't forget to free memory when done
+    for (int i = 0; i < num_layers; i++) {
+        free(net->layers[i].neurons);
+    }
+    free(net->layers);
+    free(net);
+    
     return 0;
 }
