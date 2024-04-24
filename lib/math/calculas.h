@@ -4,7 +4,8 @@
 #define eps 1.61012e-4
 
 float df(float (*func)(float),float x);
-
+double sigmoid(double x);
+double sigmoid_derivative(double x);
 //float tanh(float x);
 
 #endif

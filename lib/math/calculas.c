@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "calculas.h"
+#include <math.h>
 
 float df(float (*func)(float),float x){
     // float eps = 1.61011979e-4;
@@ -8,32 +9,10 @@ float df(float (*func)(float),float x){
     return df;
 }
 
-// float tanh(float x){
-//     int y; 
-//     return y;
-// }
-
-// float ex(float x){
-//     int sum = 0;
-//     for (size_t i = 0; i < 1000*1000; i++)
-//     {
-//         sum +=
-//     }
-    
-// }
-
-/*
-
-float func(float x){
-    return x*x;
+double sigmoid(double x) {
+    return 1.0 / (1.0 + exp(-x));
 }
 
-int main(){
-
-    float dff = df(func,3);
-
-    printf("%f\n",dff);
-    return 0;
+double sigmoid_derivative(double x) {
+    return x * (1.0 - x);
 }
-
-*/

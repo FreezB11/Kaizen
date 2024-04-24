@@ -2,11 +2,16 @@
 #define _NN_H
 
 #include <stdlib.h>
+#include "math/calculas.h"
+
+#define LEARNING_RATE 0.1 // Example learning rate
+#define NUM_EPOCHS 100*100 // Example number of training epochs
 
 typedef struct {
     double input;
     double bias;
     double output;
+    double delta;
 } neuron;
 
 typedef struct {
