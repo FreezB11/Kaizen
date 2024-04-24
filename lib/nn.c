@@ -1,5 +1,6 @@
 #include "nn.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include "math/calculas.h"
 #include <math.h>
 
@@ -7,10 +8,11 @@ network* create_network(int num_layers, int* num_neurons_per_layer) {
     network* net = (network*)malloc(sizeof(network));
     net->num_layers = num_layers;
     net->layers = (layer*)malloc(num_layers * sizeof(layer));
-    
+    neuron t;
     for (int i = 0; i < num_layers; i++) {
         net->layers[i].num_neurons = num_neurons_per_layer[i];
         net->layers[i].neurons = (neuron*)malloc(num_neurons_per_layer[i] * sizeof(neuron));
+        //printf("layer[%d] = %p\n",i,&(net->layers[i]));
     }
     
     return net;
