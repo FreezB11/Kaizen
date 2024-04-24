@@ -2,20 +2,20 @@
 #include "stdlib.h"
 
 
-struct network* create_network(int num_layers, int* num_neurons_per_layer) {
-    struct network* net = (struct network*)malloc(sizeof(struct network));
+network* create_network(int num_layers, int* num_neurons_per_layer) {
+    network* net = (network*)malloc(sizeof(network));
     net->num_layers = num_layers;
-    net->layers = (struct layer*)malloc(num_layers * sizeof(struct layer));
+    net->layers = (layer*)malloc(num_layers * sizeof(layer));
     
     for (int i = 0; i < num_layers; i++) {
         net->layers[i].num_neurons = num_neurons_per_layer[i];
-        net->layers[i].neurons = (struct neuron*)malloc(num_neurons_per_layer[i] * sizeof(struct neuron));
+        net->layers[i].neurons = (neuron*)malloc(num_neurons_per_layer[i] * sizeof(neuron));
     }
     
     return net;
 }
 
-void link_layers(struct network* net) {
+void link_layers(network* net) {
     for (int i = 0; i < net->num_layers - 1; i++) {
         for (int j = 0; j < net->layers[i].num_neurons; j++) {
             net->layers[i].neurons[j].output = 0.0; // Initialize output to zero for each neuron

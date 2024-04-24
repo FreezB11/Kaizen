@@ -3,24 +3,24 @@
 
 #include <stdlib.h>
 
-struct neuron {
+typedef struct {
     double input;
     double bias;
     double output;
-};
+} neuron;
 
-struct layer {
+typedef struct {
     int num_neurons;
-    struct neuron *neurons;
-};
+    neuron *neurons;
+} layer;
 
-struct network {
+typedef struct {
     int num_layers;
-    struct layer *layers;
-};
+    layer *layers;
+}network;
 
-struct network* create_network(int num_layers, int* num_neurons_per_layer);
-void link_layers(struct network* net);
+network* create_network(int num_layers, int* num_neurons_per_layer);
+void link_layers(network* net);
 
 
 #endif // !
