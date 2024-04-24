@@ -7,7 +7,7 @@
 
 int main() {
     int num_layers = 3;
-    int num_neurons_per_layer[] = {INPUT_SIZE, 4, 2}; // Example network architecture
+    int num_neurons_per_layer[] = {INPUT_SIZE, 6,4, 2}; // Example network architecture
     network* net = create_network(num_layers, num_neurons_per_layer);
     link_layers(net);
 
