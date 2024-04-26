@@ -21,8 +21,8 @@ network* create_network(int num_layers, int* num_neurons_per_layer) {
 void link_layers(network* net) {
     for (int i = 0; i < net->num_layers - 1; i++) {
         for (int j = 0; j < net->layers[i].num_neurons; j++) {
-            net->layers[i].neurons[j].output = 0.0; // Initialize output to zero for each neuron
-            net->layers[i].neurons[j].bias = 0.0;   // Initialize bias to zero for each neuron
+            net->layers[i].neurons[j].output = 0.0;
+            net->layers[i].neurons[j].bias = 0.0;   
             for (int k = 0; k < net->layers[i + 1].num_neurons; k++) {
                 // Establish connections between neurons in adjacent layers
                 // Set the output of neurons in the current layer as the input of neurons in the next layer
