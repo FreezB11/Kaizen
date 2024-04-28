@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "math/calculas.h"
 
-#define LEARNING_RATE 0.1 // Example learning rate
+#define LEARNING_RATE 0.07 // Example learning rate
 #define NUM_EPOCHS 100*1000 // Example number of training epochs
 
 typedef struct {

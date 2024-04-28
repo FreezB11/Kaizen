@@ -7,19 +7,19 @@
 
 int main() {
     int num_layers = 3;
-    int num_neurons_per_layer[] = {INPUT_SIZE,2,1}; // Example network architecture
+    int num_neurons_per_layer[] = {INPUT_SIZE,2,2}; // Example network architecture
     network* net = create_network(num_layers, num_neurons_per_layer);
     //link_layers(net);
 
     // Example training data
-    double input_set1[INPUT_SIZE] = {0,0};
-    double target_set1[1] = {0};
+    double input_set1[INPUT_SIZE] = {1,0};
+    double target_set1[2] = {1,0};
     double input_set2[INPUT_SIZE] = {0,1};
-    double target_set2[1] = {1};
+    double target_set2[2] = {0,1};
     double input_set3[INPUT_SIZE] = {1,0};
-    double target_set3[1] = {1};
+    double target_set3[2] = {0,1};
     double input_set4[INPUT_SIZE] = {1,1};
-    double target_set4[1] = {0};
+    double target_set4[2] = {1,0};
 
     double* inputs[NUM_TRAINING_SETS] = {input_set1, input_set2,input_set3,input_set4};
     double* targets[NUM_TRAINING_SETS] = {target_set1, target_set2,target_set3,target_set4};
