@@ -26,6 +26,9 @@ typedef struct {
 
 network* create_network(int num_layers, int* num_neurons_per_layer);
 void link_layers(network* net);
-
+void feed_forward(network* net, double* input);
+void backpropagation(network* net, double* target);
+void update_weights(network* net);
+void train_network(network* net, double** inputs, double** targets, int num_training_sets);
 
 #endif // !
