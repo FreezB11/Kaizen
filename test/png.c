@@ -11,9 +11,14 @@ const uint8_t png_signature[PNG_SIGNATURE_SIZE] = {
 
 int main () {
 
-    for(;;){
-        
-    }
+    FILE* fp;
+    fp = fopen("out.png","ab");  
+
+    fwrite(png_signature, 1, PNG_SIGNATURE_SIZE, fp);
+    fclose(fp); 
+    
+
+    
 
     return 0;
 }
