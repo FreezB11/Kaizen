@@ -6,7 +6,7 @@
 using namespace std;
 
 const int MOD = 1e9 + 7;
-const int MAX_N = 105; // As we can't handle very large grids directly, we limit our grid size
+const int MAX_N = 4096;
 
 int dx[] = {2, 1, -1, -2, -2, -1, 1, 2};
 int dy[] = {1, 2, 2, 1, -1, -2, -2, -1};

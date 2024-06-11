@@ -14,13 +14,19 @@ int count_unique_substrings(const char* s, int n, int k) {
     for (int i = 0; i <= n - k; ++i) {
         substrings[count] = (char*)malloc((k + 1) * sizeof(char));
         strncpy(substrings[count], s + i, k);
+        
         substrings[count][k] = '\0'; 
+        // printf("%s\n",substrings[count]);
         count++;
     }
 
     qsort(substrings, count, sizeof(char*), compare_strings);
 
-    int unique_count = 1;  
+    // for(int i =0; i<= n-k;++i){
+    //     printf("%s\n",substrings[i]);
+    // }
+
+    int unique_count = 0;  
     for (int i = 1; i < count; ++i) {
         if (strcmp(substrings[i], substrings[i - 1]) != 0) {
             unique_count++;
@@ -35,11 +41,11 @@ int count_unique_substrings(const char* s, int n, int k) {
 }
 
 int main() {
-    int n, k;
-    char* s;
+    int n, k;  // n = length of the string && k = length of the substring
+    char* s;   // s = string of zero's && one's of length n
    
     scanf("%d %d", &n,&k);
-    s = (char*)malloc((n + 1) * sizeof(char));
+    s = (char*)malloc((n+1) * sizeof(char));
 
 
     scanf("%s", s);
