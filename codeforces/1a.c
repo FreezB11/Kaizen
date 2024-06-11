@@ -1,16 +1,25 @@
 #include <stdio.h>
 
-int mceil(int x,int y){
-    return (x+y-1)/y;
-}
+int main()
+{
+    unsigned long long n, m, a = 1;
+    unsigned long long na, ma, res = 0;
+    
+    scanf("%llu %llu %llu", &n, &m, &a);
+    
+    na = n/a;
 
-int main (){
+    if (n%a != 0)
+        na++;
+    
+    ma = m/a;
 
-    int m,n,a;
-    int nof;
-    scanf("%d %d %d",&m,&n,&a);
-    nof = mceil(m,a) * mceil(n,a);
-    printf("%d",nof);
+    if (m%a != 0)
+        ma++;
+
+    res = na * ma;
+
+    printf("%llu", res);
 
     return 0;
 }
