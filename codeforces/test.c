@@ -1,17 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
-int main(){
+int count_unique_substrings(const char* s, int n, int k) {
 
-    char a[5] = "01101";
-    char c[5] = "01101";
+    char** substrings = (char**)malloc((n - k + 1) * sizeof(char*));
+    int count = 0;
 
-    int b = (int)a;
-    int d = (int)b;
+    for (int i = 0; i <= n - k; ++i) {
+        substrings[count] = (char*)malloc((k + 1) * sizeof(char));
+        strncpy(substrings[count], s + i, k);
+        
+        substrings[count][k] = '\0'; 
+        count++;
+    }
+    printf("%d\n",count);
 
-    printf("%d\n",b);
-    printf("%d\n",d);
+    int unique_count = 1;  
+    for (int i = 1; i < count; ++i) {
+        if (strcmp(substrings[i], substrings[i-1]) != 0) {
+                unique_count++;
+        }
+    }
+    for (int i = 0; i < count; ++i) {
+        free(substrings[i]);
+    }
+    free(substrings);
+
+
+    return unique_count;
+}
+
+int main() {
+    int n, k;
+    char* s;
+   
+    scanf("%d %d", &n,&k);
+    s = (char*)malloc((n+1) * sizeof(char));
+
+
+    scanf("%s", s);
+    int result = count_unique_substrings(s, n, k);
+
+    printf("%d\n",result);
+    free(s);
 
     return 0;
 }

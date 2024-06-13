@@ -23,13 +23,13 @@ int count_unique_substrings(const char* s, int n, int k) {
 
     qsort(substrings, count, sizeof(char*), compare_strings);
 
-    for(int i =0; i<= n-k;++i){
-        printf("%s\n",substrings[i]);
-    }
+    // for(int i =0; i<= n-k;++i){
+        // printf("%s\n",substrings[i]);
+    // }
 
-    int unique_count = 0;  
+    int unique_count = 1;  
     for (int i = 1; i < count; ++i) {
-        if (strcmp(substrings[i], substrings[i-1]) == 0) {
+        if (strcmp(substrings[i], substrings[i-1]) != 0) {
                 unique_count++;
         }
     }
