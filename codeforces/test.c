@@ -1,15 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 
 int main(){
 
-    char a[6] ="10010";
-    char b[6] ="10010"; 
+    char a[5] = "01101";
+    char c[5] = "01101";
 
-    if( a[1] == b[1]){
-        printf("same\n");
-    }else{
-        printf("not same\n");
-    }
+    int b = (int)a;
+    int d = (int)b;
+
+    printf("%d\n",b);
+    printf("%d\n",d);
 
     return 0;
 }

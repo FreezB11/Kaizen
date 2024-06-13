@@ -3,6 +3,7 @@
 #include <string.h>
 
 int compare_strings(const void* a, const void* b) {
+
     return strcmp(*(const char**)a, *(const char**)b);
 }
 
@@ -22,20 +23,21 @@ int count_unique_substrings(const char* s, int n, int k) {
 
     qsort(substrings, count, sizeof(char*), compare_strings);
 
-    // for(int i =0; i<= n-k;++i){
-    //     printf("%s\n",substrings[i]);
-    // }
+    for(int i =0; i<= n-k;++i){
+        printf("%s\n",substrings[i]);
+    }
 
     int unique_count = 0;  
     for (int i = 1; i < count; ++i) {
-        if (strcmp(substrings[i], substrings[i - 1]) != 0) {
-            unique_count++;
+        if (strcmp(substrings[i], substrings[i-1]) == 0) {
+                unique_count++;
         }
     }
     for (int i = 0; i < count; ++i) {
         free(substrings[i]);
     }
     free(substrings);
+
 
     return unique_count;
 }
