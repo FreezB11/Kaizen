@@ -2,10 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+int compare_strings(const void* a, const void* b) {
+
+    return strcmp(*(const char**)a, *(const char**)b);
+}
 
 int count_unique_substrings(const char* s, int n, int k) {
 
     char** substrings = (char**)malloc((n - k + 1) * sizeof(char*));
+    long int* narry = (long int*)malloc((n-k+1)*sizeof(long int));
     int count = 0;
 
     for (int i = 0; i <= n - k; ++i) {
@@ -13,9 +18,16 @@ int count_unique_substrings(const char* s, int n, int k) {
         strncpy(substrings[count], s + i, k);
         
         substrings[count][k] = '\0'; 
+        // printf("%s\n",substrings[count]);
         count++;
     }
-    printf("%d\n",count);
+
+    qsort(substrings, count, sizeof(char*), compare_strings);
+
+    for(int i =0; i<= n-k;++i){
+        narry[i] = atoi(substrings[i]);
+        printf("%d\n",narry[i]);
+    }
 
     int unique_count = 1;  
     for (int i = 1; i < count; ++i) {
@@ -33,8 +45,8 @@ int count_unique_substrings(const char* s, int n, int k) {
 }
 
 int main() {
-    int n, k;
-    char* s;
+    int n, k;  // n = length of the string && k = length of the substring
+    char* s;   // s = string of zero's && one's of length n
    
     scanf("%d %d", &n,&k);
     s = (char*)malloc((n+1) * sizeof(char));
