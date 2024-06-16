@@ -23,7 +23,7 @@ int main() {
         int *mc = (int *)malloc((n-1) * sizeof(int));
 
         for(int i = 0 ; i<n-1 ;i++){
-            mc[i] = (i+1) * pages[i] ;
+            mc[i] = pages[i] ;
         }
 
         int mm = mc[0];
@@ -44,7 +44,7 @@ int main() {
 
             // qsort(pages, n, sizeof(int), compare);
             // printf("%d\n",mm);
-            int max_pages = pages[n-1] + mm/(index+1);
+            int max_pages = pages[n-1] + mm;
             output[y] = max_pages;
             // printf("%d\n", max_pages);
         }
