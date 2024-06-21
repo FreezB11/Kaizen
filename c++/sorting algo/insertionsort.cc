@@ -9,9 +9,11 @@ float sq(float x){
 
 float NewM(float (*func)(float),int x,int S){
     float Xn;
+    float t =x;
     for (size_t i = 0; i < S; i++){
-        Xn = x - func(x)/df(func,x);
-        x = Xn;
+        //Xn = x - func(t)/df(func,t);
+        Xn = t/2 + 1/t;
+        t = Xn;
     }
     return Xn;
 }
@@ -44,7 +46,7 @@ int main(){
     // log(i)
     // sort(arr);
     log("=======================")
-    float out = NewM(sq,1,1000);
+    float out = NewM(sq,2,1000);
     log(out);
 
 
