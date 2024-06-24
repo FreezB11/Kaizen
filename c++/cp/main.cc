@@ -1,12 +1,15 @@
+// author:: hsay
 #include <iostream>
-#include <cstdlib>  // for malloc and free
-#include <cstring>  // for memcpy
+// #include <cstdlib>  // for malloc and free
+// #include <cstring>  // for memcpy
 #define LOG(x) std::cout << x << std::endl;
 #define len(x,y) (long long)sizeof(x)/sizeof(y)
 #define f0r(a, b) for (long long i = a; i < (b); i++)
+#define f1r(a, b) for (long long j = a; j < (b); j++)
 typedef long long ll;
 typedef long double lld;
 typedef unsigned long long ull;
+const ll mod1 = 1000000007;
 
 template<typename T,std::size_t n>
 class vector{
@@ -37,13 +40,30 @@ public:
     std::size_t size() const {return n;}
 };
 
-int main(){
-    vector<int,10> data;
-    // data = {0,1,2,3,4,5,6,7,8,9};/// this is currently not possible
-    f0r(0,10){
-        LOG(data[i]);
+void solve(int tc =1){
+    int n;
+    std::cin>> n;
+    int count = 0;
+    for(int i = 0; i <n; i++){
+        int a,b,c;
+        std::cin >> a >> b >> c;
+        if(a+b+c >= 2){
+            count++;
+        }
     }
-    std::cin.get();
+    std::cout << count;
+    
+}
+
+
+int main(){
+    
+
+    int tc = 1;
+	// cin >> tc;
+	for (int t = 0; t < tc; t++) solve(t);
+
+    // std::cin.get();
     return 0;
 }
 
