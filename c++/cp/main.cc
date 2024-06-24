@@ -1,5 +1,6 @@
 // author:: hsay
 #include <iostream>
+#include <string.h>
 // #include <cstdlib>  // for malloc and free
 // #include <cstring>  // for memcpy
 #define LOG(x) std::cout << x << std::endl;
@@ -41,17 +42,6 @@ public:
 };
 
 void solve(int tc =1){
-    int n;
-    std::cin>> n;
-    int count = 0;
-    for(int i = 0; i <n; i++){
-        int a,b,c;
-        std::cin >> a >> b >> c;
-        if(a+b+c >= 2){
-            count++;
-        }
-    }
-    std::cout << count;
     
 }
 
