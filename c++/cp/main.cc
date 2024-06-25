@@ -1,7 +1,8 @@
 // author:: hsay
 #include <iostream>
 #include <string.h>
-// #include <cstdlib>  // for malloc and free
+#include <initializer_list>  // for std::initializer_list
+#include <cstdlib>  // for malloc and free
 // #include <cstring>  // for memcpy
 #define LOG(x) std::cout << x << std::endl;
 #define len(x,y) (long long)sizeof(x)/sizeof(y)
@@ -21,6 +22,23 @@ public:
         data = (T*)malloc(n * sizeof(T));
         if (!data) {throw std::bad_alloc();}
         for (size_t i = 0; i < n; i++){new(&data[i]) T();}
+    }
+    vector(std::initializer_list<T> initList) {
+        if (initList.size() > n) {
+            throw std::out_of_range("Initializer list too large");
+        }
+        data = static_cast<T*>(std::malloc(n * sizeof(T)));
+        if (!data) {
+            throw std::bad_alloc();
+        }
+        std::size_t i = 0;
+        for (const auto& item : initList) {
+            new(&data[i++]) T(item);
+        }
+        // Initialize remaining elements with default value
+        for (; i < n; ++i) {
+            new(&data[i]) T();
+        }
     }
     ~vector() {
         for (std::size_t i = 0; i < n; ++i) {data[i].~T();}
@@ -48,11 +66,13 @@ void solve(int tc =1){
 
 int main(){
     
-
+    
     int tc = 1;
 	// cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
 
+    vector<int,4> vec = {0,0,0,1};
+    f0r(0,4){LOG(vec[i])}
     // std::cin.get();
     return 0;
 }
