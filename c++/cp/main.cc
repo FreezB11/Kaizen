@@ -57,6 +57,21 @@ public:
         // return data[index];
     // }
     std::size_t size() const {return n;}
+
+    class Iterator {
+    private:
+        T* ptr;
+    public:
+        explicit Iterator(T* p) : ptr(p) {}
+        Iterator& operator++() { ++ptr; return *this; }
+        Iterator operator++(int) { Iterator tmp = *this; ++ptr; return tmp; }
+        T& operator*() { return *ptr; }
+        T* operator->() { return ptr; }
+        bool operator==(const Iterator& other) const { return ptr == other.ptr; }
+        bool operator!=(const Iterator& other) const { return ptr != other.ptr; }
+    };
+    Iterator begin() { return Iterator(data); }
+    Iterator end() { return Iterator(data + n); }
 };
 
 void solve(int tc =1){
@@ -71,12 +86,30 @@ int main(){
 	// cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
 
-    vector<int,4> vec = {0,0,0,1};
-    f0r(0,4){LOG(vec[i])}
+    vector<vector<int,4>,2> vec = {{0,0,0,0},{1,1,1,1}};
+    
+    for (std::size_t i = 0; i <2; ++i) {
+        for (std::size_t j = 0; j < 4; ++j) {
+            std::cout << vec[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // vector<int,4> vec = {0,0,0,1};
+    // f0r(0,4){LOG(vec[i])}
     // std::cin.get();
     return 0;
 }
 
 
 
+/*
+this how to use the itrator
+Vector<int, 5> vec = {0, 1, 2, 3, 4};
 
+    // Print values using iterators
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+*/
