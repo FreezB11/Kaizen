@@ -56,6 +56,13 @@ public:
         }
         return result;
     }
+    vector<T, n> operator*(const T& scalar) const {
+        vector<T, n> result;
+        for (size_t i = 0; i < n; ++i) {
+            result[i] = data[i] * scalar;
+        }
+        return result;
+    }
     // Const version of element access
     // const T& operator[](std::size_t index) const {
         // if (index >= N) {
@@ -79,6 +86,16 @@ public:
     };
     Iterator begin() { return Iterator(data); }
     Iterator end() { return Iterator(data + n); }
+
+    friend std::ostream& operator<<(std::ostream& os, const vector<T, n>& vec) {
+        os << "[";
+        for (size_t i = 0; i < n; ++i) {
+            os << vec.data[i];
+            if (i != n - 1) os << ", ";
+        }
+        os << "]";
+        return os;
+    }
   
 };
 void test();
@@ -130,9 +147,24 @@ Vector<int, 5> vec = {0, 1, 2, 3, 4};
 */
 
 void test(){
+
+
+    vector<vector<int,4>,4> vec2d = {
+        {1, 0, 0, 0},
+        {0, 2, 0, 0},
+        {0, 0, 3, 0},
+        {0, 0, 0, 4}
+    };
+    for (size_t i = 0; i < vec2d.size(); ++i) {
+        std::cout << vec2d[i] << std::endl;
+    }
+
+
     vector<int,3> vec = {0,1,2};
-    vector<int,3> vec2 = {0,1,3};
+    vector<int,3> vec2 = vec * 2;
+    LOG(vec2)
     vector<int,3> res = vec + vec2;
+    LOG(vec)
     for (auto it = res.begin(); it != res.end(); ++it) {
         std::cout << *it << " ";
     }
