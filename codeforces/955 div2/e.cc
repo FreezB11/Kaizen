@@ -1,50 +1,56 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <cmath>
+using namespace std;
 
-const long long MOD = 1000000007;
+const int MOD = 1000000007;
 
-// Helper function to count the number of set bits (1s) in a number
-int count_bits(long long x) {
+// Function to count the number of '1's in the binary representation of x
+int bit_count(long long x) {
     int count = 0;
-    while (x) {
-        count += x & 1;
+    while (x > 0) {
+        if (x & 1) count++;
         x >>= 1;
     }
     return count;
 }
 
-// Function to compute number of k-good subarrays for given n and k
+// Function to compute the number of k-good subarrays for an array of length n
 long long count_k_good_subarrays(long long n, int k) {
-    // Store the valid numbers count
-    long long valid_count = 0;
+    if (k == 0) {
+        return (n * (n + 1) / 2) % MOD;
+    }
     
-    // Iterate over numbers from 0 to n-1
+    long long result = 0;
     for (long long i = 0; i < n; ++i) {
-        if (count_bits(i) <= k) {
-            ++valid_count;
+        if (bit_count(i) <= k) {
+            result += (n - i);
+            if (result >= MOD) result -= MOD;
+        } else {
+            break;
         }
     }
-
-    // The number of k-good subarrays is the sum of the first valid_count natural numbers
-    return valid_count * (valid_count + 1) / 2 % MOD;
+    
+    return result;
 }
 
 int main() {
     int t;
-    std::cin >> t;
-
-    std::vector<long long> results(t);
-    for (int i = 0; i < t; ++i) {
+    cin >> t;
+    
+    vector<long long> results;
+    while (t--) {
         long long n;
         int k;
-        std::cin >> n >> k;
-        results[i] = count_k_good_subarrays(n, k);
+        cin >> n >> k;
+        
+        long long result = count_k_good_subarrays(n, k);
+        results.push_back(result);
     }
-
-    for (const auto& result : results) {
-        std::cout << result << std::endl;
+    
+    for (long long result : results) {
+        cout << result << endl;
     }
-
+    
     return 0;
 }

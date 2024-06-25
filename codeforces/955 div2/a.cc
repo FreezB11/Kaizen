@@ -1,4 +1,5 @@
 // author:: hsay
+#include <bits/stdc++.h>
 #include <iostream>
 #include <string.h>
 #include <initializer_list>  // for std::initializer_list
@@ -102,19 +103,36 @@ void test();
 void solve(int tc =1){
     ll x,y,k;
     std::cin >> x >> y >>k;
-    x++;
-    if((x % y) != 0){
-            x = x + (x % y); 
-            k = k - (x % y) ; 
-    }
-    long double y_ = 1/y ;
-    for (long long i = 0; i < k; ++i) {
-        while (x % y == 0) {
-            x = x*y_;
-        }
-         x += 1;
-    }  
-    std::cout <<x<< std::endl;
+    while(k>0){
+			long long v;// = min(k,y-x%y);
+            if (k > y-x%y)
+            {
+                v = y-x%y;
+            }else{
+                v = k;
+            }
+            
+			x+=v;
+			while(x%y==0){
+				x/=y;
+			}
+			k-=v;
+			if(x==1){
+				x=(1+(k%(y-1)));
+				break;
+			}
+		}
+		std::cout<<x<<std::endl;
+    // x = x + (x%(y-1));
+    // k = k - (x%(y-1));
+    // long double y_ = 1/y ;
+    // for (long long i = 0; i < k; ++i) {
+    //      x += 1;
+    //     while (x % y == 0) {
+    //         x = x*y_;
+    //     }
+        
+    // }
 }
 
 
