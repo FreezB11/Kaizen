@@ -49,6 +49,13 @@ public:
         if (index >= n) {throw std::out_of_range("Index out of range");}
         return data[index];
     }
+    vector<T,n> operator+(vector<T,n> other){
+        vector<T,n> result;
+        for (size_t i = 0; i < n; ++i) {
+            result[i] = data[i] + other[i];
+        }
+        return result;
+    }
     // Const version of element access
     // const T& operator[](std::size_t index) const {
         // if (index >= N) {
@@ -72,8 +79,9 @@ public:
     };
     Iterator begin() { return Iterator(data); }
     Iterator end() { return Iterator(data + n); }
+  
 };
-
+void test();
 void solve(int tc =1){
     
 }
@@ -85,19 +93,7 @@ int main(){
     int tc = 1;
 	// cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
-
-    vector<vector<int,4>,2> vec = {{0,0,0,0},{1,1,1,1}};
-    
-    for (std::size_t i = 0; i <2; ++i) {
-        for (std::size_t j = 0; j < 4; ++j) {
-            std::cout << vec[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-
-    // vector<int,4> vec = {0,0,0,1};
-    // f0r(0,4){LOG(vec[i])}
-    // std::cin.get();
+    test();
     return 0;
 }
 
@@ -112,4 +108,33 @@ Vector<int, 5> vec = {0, 1, 2, 3, 4};
         std::cout << *it << " ";
     }
     std::cout << std::endl;
+
+        /// the implementation is hard but i shall try it again
+
+    // vector<vector<int,4>,2> vec = {{0,0,0,0},{1,1,1,1}};
+    
+    // for (std::size_t i = 0; i <2; ++i) {
+    //     for (std::size_t j = 0; j < 4; ++j) {
+    //         std::cout << vec[i][j] << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    // vector<int,4> vec = {0,0,0,1};
+    // f0r(0,4){LOG(vec[i])}
+    // std::cin.get();
+
+
+
+
 */
+
+void test(){
+    vector<int,3> vec = {0,1,2};
+    vector<int,3> vec2 = {0,1,3};
+    vector<int,3> res = vec + vec2;
+    for (auto it = res.begin(); it != res.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
