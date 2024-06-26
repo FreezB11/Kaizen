@@ -3,7 +3,9 @@
 #include <string.h>
 #include <initializer_list>  // for std::initializer_list
 #include <cstdlib>  // for malloc and free
-// #include <cstring>  // for memcpy
+// #include <chrono> // use when time is required
+//  #include <cstring>  // for memcpy
+#define MadMax 1000000000
 #define LOG(x) std::cout << x << std::endl;
 #define len(x,y) (long long)sizeof(x)/sizeof(y)
 #define f0r(a, b) for (long long i = a; i < (b); i++)
@@ -17,6 +19,8 @@ template<typename T,std::size_t n>
 class vector{
 private:
     T* data;
+    T vMax = 0 ;
+    T vMin = MadMax;
 public:
     vector(){
         data = (T*)malloc(n * sizeof(T));
@@ -34,6 +38,9 @@ public:
         std::size_t i = 0;
         for (const auto& item : initList) {
             new(&data[i++]) T(item);
+            if(item > vMax){vMax = item;}
+            if(item < vMin){vMin = item;}
+            //LOG(item);
         }
         // Initialize remaining elements with default value
         for (; i < n; ++i) {
@@ -71,7 +78,8 @@ public:
         // return data[index];
     // }
     std::size_t size() const {return n;}
-
+    T max(){ return vMax;}
+    T min(){ return vMin;}
     class Iterator {
     private:
         T* ptr;
@@ -105,12 +113,13 @@ void solve(int tc =1){
 
 
 int main(){
-    
+
     
     int tc = 1;
 	// cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
     test();
+
     return 0;
 }
 
@@ -147,26 +156,31 @@ Vector<int, 5> vec = {0, 1, 2, 3, 4};
 */
 
 void test(){
+    vector<int,10> vec = {1,9,3,5,6,2,8,4,7,11};
+    // std::cout << vec[0] << std::endl;
+    std::cout << vec.max() << std::endl;
+    std::cout << vec.min() << std::endl;
 
-
-    vector<vector<int,4>,4> vec2d = {
-        {1, 0, 0, 0},
-        {0, 2, 0, 0},
-        {0, 0, 3, 0},
-        {0, 0, 0, 4}
-    };
-    for (size_t i = 0; i < vec2d.size(); ++i) {
-        std::cout << vec2d[i] << std::endl;
-    }
-
-
-    vector<int,3> vec = {0,1,2};
-    vector<int,3> vec2 = vec * 2;
-    LOG(vec2)
-    vector<int,3> res = vec + vec2;
-    LOG(vec)
-    for (auto it = res.begin(); it != res.end(); ++it) {
-        std::cout << *it << " ";
-    }
+    // vector<vector<int,4>,4> vec2d = {
+    //     {1, 0, 0, 0},
+    //     {0, 2, 0, 0},
+    //     {0, 0, 3, 0},
+    //     {0, 0, 0, 4}
+    // };
+    // for (size_t i = 0; i < vec2d.size(); ++i) {
+    //     std::cout << vec2d[i] << std::endl;
+    // }
+    // vector<int,4> vec = {0,1,2};
+    // for (auto it = vec.begin(); it != vec.end(); ++it) {
+    //     std::cout << *it << " ";
+    // }
+    // vector<int,3> vec = {0,1,2};
+    // vector<int,3> vec2 = vec * 2;
+    // LOG(vec2)
+    // vector<int,3> res = vec + vec2;
+    // LOG(vec)
+    // for (auto it = res.begin(); it != res.end(); ++it) {
+    //     std::cout << *it << " ";
+    // }
     std::cout << std::endl;
 }
