@@ -5,7 +5,7 @@
 #include <cstdlib>  // for malloc and free
 // #include <chrono> // use when time is required
 //  #include <cstring>  // for memcpy
-#define MadMax 1000000000
+#define MadMax 1247199999
 #define LOG(x) std::cout << x << std::endl;
 #define len(x,y) (long long)sizeof(x)/sizeof(y)
 #define f0r(a, b) for (long long i = a; i < (b); i++)
@@ -15,7 +15,7 @@ typedef long double lld;
 typedef unsigned long long ull;
 const ll mod1 = 1000000007;
 
-template<typename T,std::size_t n>
+template<typename T,long long n>
 class vector{
 private:
     T* data;
