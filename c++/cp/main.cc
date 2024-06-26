@@ -15,6 +15,9 @@ typedef long double lld;
 typedef unsigned long long ull;
 const ll mod1 = 1000000007;
 
+
+template<typename T> T max(T &a, T &b) { return a > b ? a : b; }
+
 template<typename T,long long n>
 class vector{
 private:
