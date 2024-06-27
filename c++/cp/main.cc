@@ -15,7 +15,12 @@ typedef long double lld;
 typedef unsigned long long ull;
 const ll mod1 = 1000000007;
 
-
+#ifndef mmax
+#define mmax(a,b) (((a) > (b)) ? (a) : (b))
+#endif
+#ifndef mmin
+#define mmin(a,b) (((a) < (b)) ? (a) : (b))
+#endif
 
 template<typename T> T max(T &a, T &b) { return a > b ? a : b; }
 
