@@ -3,6 +3,7 @@
 #include <string.h>
 #include <initializer_list>  // for std::initializer_list
 #include <cstdlib>  // for malloc and free
+
 // #include <chrono> // use when time is required
 //  #include <cstring>  // for memcpy
 #define MadMax 0x7fffffffffffffffLL
@@ -24,7 +25,7 @@ const ll mod1 = 1000000007;
 
 template<typename T> T max(T &a, T &b) { return a > b ? a : b; }
 
-template<typename T,long long n>
+template<typename T,int n>
 class vector{
 private:
     T* data;
@@ -115,98 +116,44 @@ public:
     }
   
 };
-void test();
+
 void solve(int tc =1){
     int n;
     std::cin >> n;
-
-    int sum_x = 0, sum_y = 0, sum_z = 0;
-
-    for (int i = 0; i < n; ++i) {
-        int x, y, z;
-        std::cin >> x >> y >> z;
-        sum_x += x;
-        sum_y += y;
-        sum_z += z;
+    int *a = (int*)malloc(n*sizeof(int));
+    int *b = (int*)malloc(n*sizeof(int));
+    for (size_t i = 0; i < n; i++){
+        std::cin >> a[i];
     }
-
-    if (sum_x == 0 && sum_y == 0 && sum_z == 0) {
-        std::cout << "YES" << std::endl;
-    } else {
-        std::cout << "NO" << std::endl;
+    for (size_t i = 0; i < n; i++){
+        std::cin >> b[i];
     }
-    
+    int mov_a = 0;
+    int mov_b = 0;
+    for (size_t i = 0; i < n; i++){
+        if (a[i]>b[i]){
+            mov_a = mov_a + a[i];
+        }else if (b[i]>a[i]){
+            mov_b = mov_b + b[i];
+        }else{
+            mov_b = mov_b + b[i];
+        }
+        
+        
+    }
+    std::cout << mmin(mov_a,mov_b) << std::endl;
 }
 
 int main(){
 
     
     int tc = 1;
-	// cin >> tc;
+	std::cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
-    //test();
+
 
     return 0;
 }
 
 
 
-/*
-this how to use the itrator
-Vector<int, 5> vec = {0, 1, 2, 3, 4};
-
-    // Print values using iterators
-    for (auto it = vec.begin(); it != vec.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-
-        /// the implementation is hard but i shall try it again
-
-    // vector<vector<int,4>,2> vec = {{0,0,0,0},{1,1,1,1}};
-    
-    // for (std::size_t i = 0; i <2; ++i) {
-    //     for (std::size_t j = 0; j < 4; ++j) {
-    //         std::cout << vec[i][j] << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-
-    // vector<int,4> vec = {0,0,0,1};
-    // f0r(0,4){LOG(vec[i])}
-    // std::cin.get();
-
-
-
-
-*/
-
-void test(){
-    // vector<int,10> vec = {1,9,3,5,6,2,8,4,7,11};
-    // std::cout << vec[0] << std::endl;
-    // std::cout << vec.max() << std::endl;
-    // std::cout << vec.min() << std::endl;
-
-    // vector<vector<int,4>,4> vec2d = {
-    //     {1, 0, 0, 0},
-    //     {0, 2, 0, 0},
-    //     {0, 0, 3, 0},
-    //     {0, 0, 0, 4}
-    // };
-    // for (size_t i = 0; i < vec2d.size(); ++i) {
-    //     std::cout << vec2d[i] << std::endl;
-    // }
-    // vector<int,4> vec = {0,1,2};
-    // for (auto it = vec.begin(); it != vec.end(); ++it) {
-    //     std::cout << *it << " ";
-    // }
-    // vector<int,3> vec = {0,1,2};
-    // vector<int,3> vec2 = vec * 2;
-    // LOG(vec2)
-    // vector<int,3> res = vec + vec2;
-    // LOG(vec)
-    // for (auto it = res.begin(); it != res.end(); ++it) {
-    //     std::cout << *it << " ";
-    // }
-    // std::cout << std::endl;
-}
