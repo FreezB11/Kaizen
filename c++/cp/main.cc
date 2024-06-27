@@ -24,23 +24,25 @@ const ll mod1 = 1000000007;
 
 template<typename T> T max(T &a, T &b) { return a > b ? a : b; }
 
-template<typename T,long long n>
+template<typename T>
 class vector{
 private:
+    long long size;
     T* data;
     T vMax = 0 ;
     long long vMin = MadMax;
 public:
-    vector(){
-        data = (T*)malloc(n * sizeof(T));
+    vector(int nn){
+        size = nn;
+        data = (T*)malloc(size * sizeof(T));
         if (!data) {throw std::bad_alloc();}
         for (size_t i = 0; i < n; i++){new(&data[i]) T();}
     }
     vector(std::initializer_list<T> initList) {
-        if (initList.size() > n) {
+        if (initList.size() > size) {
             throw std::out_of_range("Initializer list too large");
         }
-        data = static_cast<T*>(std::malloc(n * sizeof(T)));
+        data = static_cast<T*>(std::malloc(size * sizeof(T)));
         if (!data) {
             throw std::bad_alloc();
         }
@@ -52,29 +54,29 @@ public:
             //LOG(item);
         }
         // Initialize remaining elements with default value
-        for (; i < n; ++i) {
+        for (; i < size; ++i) {
             new(&data[i]) T();
         }
     }
     ~vector() {
-        for (std::size_t i = 0; i < n; ++i) {data[i].~T();}
+        for (std::size_t i = 0; i < size; ++i) {data[i].~T();}
         std::free(data);
     }
     //allows to access the elements with bound checkiing
     T& operator[](std::size_t index) {
-        if (index >= n) {throw std::out_of_range("Index out of range");}
+        if (index >= size) {throw std::out_of_range("Index out of range");}
         return data[index];
     }
-    vector<T,n> operator+(vector<T,n> other){
-        vector<T,n> result;
-        for (size_t i = 0; i < n; ++i) {
+    vector<T,n> operator+(vector<T> other(size)){
+        vector<T> result(size);
+        for (size_t i = 0; i < size; ++i) {
             result[i] = data[i] + other[i];
         }
         return result;
     }
     vector<T, n> operator*(const T& scalar) const {
-        vector<T, n> result;
-        for (size_t i = 0; i < n; ++i) {
+        vector<T> result(size);
+        for (size_t i = 0; i < size; ++i) {
             result[i] = data[i] * scalar;
         }
         return result;
@@ -86,7 +88,7 @@ public:
         // }
         // return data[index];
     // }
-    std::size_t size() const {return n;}
+    std::size_t size() const {return size;}
     T max(){ return vMax;}
     T min(){ return vMin;}
     class Iterator {
@@ -106,9 +108,9 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const vector<T, n>& vec) {
         os << "[";
-        for (size_t i = 0; i < n; ++i) {
+        for (size_t i = 0; i < size; ++i) {
             os << vec.data[i];
-            if (i != n - 1) os << ", ";
+            if (i != size - 1) os << ", ";
         }
         os << "]";
         return os;
@@ -117,35 +119,19 @@ public:
 };
 void test();
 void solve(int tc =1){
-    int n;
-    std::cin >> n;
-
-    int sum_x = 0, sum_y = 0, sum_z = 0;
-
-    for (int i = 0; i < n; ++i) {
-        int x, y, z;
-        std::cin >> x >> y >> z;
-        sum_x += x;
-        sum_y += y;
-        sum_z += z;
-    }
-
-    if (sum_x == 0 && sum_y == 0 && sum_z == 0) {
-        std::cout << "YES" << std::endl;
-    } else {
-        std::cout << "NO" << std::endl;
-    }
-    
+       
 }
 
 int main(){
 
     
     int tc = 1;
-	// cin >> tc;
+	// std::cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
     //test();
-
+    int n;
+    std::cin >> n;
+    vector<int>v(n);
     return 0;
 }
 
