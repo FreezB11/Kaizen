@@ -22,6 +22,10 @@ const ll mod1 = 1000000007;
 #define mmin(a,b) (((a) < (b)) ? (a) : (b))
 #endif
 
+bool isin(std::string a,std::string b){ // tell if a is in b
+    if (b.find(a) != std::string::npos) {return true;} else{return false;}
+}
+
 template<typename T> T max(T &a, T &b) { return a > b ? a : b; }
 
 template<typename T>
@@ -48,10 +52,29 @@ void solve(int tc =1){
        
 }
 
+
+void testing(ll n){
+    vector<int> v(n);
+    for (size_t i = 0; i < n; i++)
+    {
+        v[i] = i;
+    }
+    for (size_t i = 0; i < n; i++)
+    {
+        std::cout << v[i];
+    }
+    
+}
+
 int main(){
 
     
     int tc = 1;
+   
+    
+    // ll n;
+    // std::cin >> n;
+    //testing(n);
 	// std::cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
     return 0;
