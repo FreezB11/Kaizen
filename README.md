@@ -2,7 +2,11 @@
 
 ```bash
 
-git clone https://github.com/FreezB11/tsuki.git
+#linux
+make && make run #to start the program
+
+#windows
+./make.bat ${yourfilenamehere}.cc  #runn the bat file
 
 
 ```
