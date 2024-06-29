@@ -3,13 +3,16 @@
 #include <string.h>
 #include <initializer_list>  // for std::initializer_list
 #include <cstdlib>  // for malloc and free
+#include <queue>
+#include <vector>
+#include <utility>
 // #include <chrono> // use when time is required
 //  #include <cstring>  // for memcpy
 #define MadMax 0x7fffffffffffffffLL
 #define LOG(x) std::cout << x << std::endl;
 #define len(x,y) (long long)sizeof(x)/sizeof(y)
-#define f0r(a, b) for (long long i = a; i < (b); i++)
-#define f1r(a, b) for (long long j = a; j < (b); j++)
+#define f0r(a, b) for (long long i = a; i <= (b); i++)
+#define f1r(a, b) for (long long j = a; j <= (b); j++)
 typedef long long ll;
 typedef long double lld;
 typedef unsigned long long ull;
@@ -28,54 +31,16 @@ bool isin(std::string a,std::string b){ // tell if a is in b
 
 template<typename T> T max(T &a, T &b) { return a > b ? a : b; }
 
-template<typename T>
-class vector{
-private:
-    T *data;
-    ll size;
-    ll max =0;
-    ll min = MadMax;
-public:
-    vector(ll n){
-        size = n;
-        data = (T*)malloc(n*sizeof(T));
-        if (!data) {throw std::bad_alloc();}
-        for (size_t i = 0; i < n; i++){new(&data[i]) T();}
-    }
-    T& operator[](std::size_t index) {
-        if (index >= size) {throw std::out_of_range("Index out of range");}
-        return data[index];
-    }
-};
-
 void solve(int tc =1){
-       
-}
-
-
-void testing(ll n){
-    vector<int> v(n);
-    for (size_t i = 0; i < n; i++)
-    {
-        v[i] = i;
-    }
-    for (size_t i = 0; i < n; i++)
-    {
-        std::cout << v[i];
-    }
     
 }
+
 
 int main(){
 
     
     int tc = 1;
-   
-    
-    // ll n;
-    // std::cin >> n;
-    //testing(n);
-	// std::cin >> tc;
+	std::cin >> tc;
 	for (int t = 0; t < tc; t++) solve(t);
     return 0;
 }
