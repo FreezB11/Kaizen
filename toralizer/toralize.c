@@ -8,12 +8,28 @@
 #include "toralize.h"
 
 /**/
+Req *request(const char *dstip,const int dstport){
+    Req *req;
+    req = malloc(reqsize);
+    req->vn = 4;
+    req->cd = 1;
+    req->dsport = htons(dstport);
+    req->dstip = inet_addr(dstip);
+    strncpy(req->userid,USERNAME,8);
+
+    return req;
+}
 
 int main(int argc, char *argv[]){
     char *host;
     int port,s;
 
     struct sockaddr_in sock;
+    Req *req;
+    Res *res;
+    char buf[ressize];
+    int success;
+
 
     if(argc < 3){
         printf("ERR::input missing!!\n");
@@ -39,7 +55,31 @@ int main(int argc, char *argv[]){
         return -1;
     }
     printf("connected to proxy\n");
-    close(s);
+    req = request(host, port);
+    write(s, req, reqsize);
 
+    memset(buf, 0, ressize);
+    if(read(s, buf, ressize) < 1){
+        perror("read");
+        free(req);
+        close(s);
+
+        return -1;
+    }
+    printf("over here\n"); //
+    res = (Res *)buf;
+    success = (res->cd == 90);
+    if(!success){
+        fprintf(stderr, "unable to traverse the proxy,error code: %d\n",res->cd);
+
+        close(s);
+        free(req);
+
+        return -1;
+    }
+    printf("succesfully connected through the proxy to %s:%d\n",host,port);
+
+    close(s);
+    free(req);
     return 0;
 }
