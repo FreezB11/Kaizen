@@ -11,7 +11,7 @@
 
 
 #define PROXY       "127.0.0.1"
-#define PROXYPORT   8080
+#define PROXYPORT   9090
 #define USERNAME    "toralix"
 
 #define reqsize sizeof(struct proxy_request)

@@ -67,7 +67,9 @@ int main(int argc, char *argv[]){
         return -1;
     }
     printf("over here\n"); //
-    res = (Res *)buf;
+    printf("%s\n",buf);
+    res->cd = (Res *)buf;
+    printf("%d\n",res->cd);
     success = (res->cd == 90);
     if(!success){
         fprintf(stderr, "unable to traverse the proxy,error code: %d\n",res->cd);

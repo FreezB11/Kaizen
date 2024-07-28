@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-#define PORT 8080
+#define PORT 9090
 #define BUFFER_SIZE 1024
 
 int main() {
@@ -12,7 +12,7 @@ int main() {
     struct sockaddr_in address;
     int addrlen = sizeof(address);
     char buffer[BUFFER_SIZE] = {0};
-    char response = 90;
+    char *response = "90";
 
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
@@ -57,7 +57,7 @@ int main() {
             printf("Data received: %s\n", buffer);
 
             // Sending a response to the client
-            send(new_socket,(void *)90, 2, 0);
+            send(new_socket,response, strlen(response), 0);
             printf("Response sent\n");
         }
 
